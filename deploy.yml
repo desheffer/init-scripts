@@ -7,3 +7,4 @@
     - { role: gdm, tags: ['gdm'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: extra, tags: ['extra'] }
+    - { role: dotfiles, tags: ['dotfiles'] }

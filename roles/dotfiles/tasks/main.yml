@@ -1,0 +1,20 @@
+---
+
+- name: Clone dotfiles repository
+  become_user: "{{ user.name }}"
+  git:
+    repo: "git@github.com:desheffer/dotfiles.git"
+    dest: ~/dotfiles
+    accept_hostkey: yes
+  register: dotfiles_git
+
+- name: Install dotfiles
+  become_user: "{{ user.name }}"
+  command: "~/dotfiles/bootstrap.sh -f"
+  when: dotfiles_git.after != dotfiles_git.before
+
+- name: Create bin directory
+  become_user: "{{ user.name }}"
+  file:
+    dest: ~/bin
+    state: directory
