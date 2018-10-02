@@ -7,5 +7,6 @@
     - { role: gdm, tags: ['gdm'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: extra, tags: ['extra'] }
+    - { role: fonts, tags: ['fonts'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: docker, tags: ['docker'] }
