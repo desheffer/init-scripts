@@ -1,0 +1,20 @@
+---
+
+- name: Install Docker
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - docker
+    - docker-compose
+
+- name: Add user to the docker group
+  user:
+    name: "{{ user.name }}"
+    append: yes
+    groups: docker
+
+- name: Start Docker
+  service:
+    name: docker
+    enabled: yes
+    state: started
