@@ -1,0 +1,12 @@
+---
+
+- name: Install GDM
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - gdm
+
+- name: Enable GDM
+  service:
+    name: gdm
+    enabled: yes

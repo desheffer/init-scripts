@@ -1,0 +1,19 @@
+---
+
+- name: Install extra packages
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - gimp
+    - gvim
+    - steam
+    - steam-native-runtime
+
+- name: Install extra AUR packages
+  aur:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+  with_items:
+    - google-chrome
+    - nordvpn-bin
+    - slack-desktop

@@ -3,4 +3,7 @@
 - hosts: localhost
   become: yes
   roles:
-      - { role: base, tags: ['base'] }
+    - { role: base, tags: ['base'] }
+    - { role: gdm, tags: ['gdm'] }
+    - { role: gnome, tags: ['gnome'] }
+    - { role: extra, tags: ['extra'] }

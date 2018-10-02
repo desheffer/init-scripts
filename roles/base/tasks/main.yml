@@ -1,0 +1,18 @@
+---
+
+- name: Install base packages
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - aws-cli
+    - base-devel
+    - bc
+    - coreutils
+    - git
+    - jq
+    - rsync
+    - the_silver_searcher
+    - tmux
+    - tree
+    - vim
+    - yay

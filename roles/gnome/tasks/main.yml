@@ -1,0 +1,7 @@
+---
+
+- name: Install GNOME
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - gnome
