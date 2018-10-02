@@ -1,0 +1,21 @@
+---
+
+- name: Create user group
+  group:
+    name: "{{ user.name }}"
+
+- name: Create user
+  user:
+    name: "{{ user.name }}"
+    comment: "{{ user.fullname }}"
+    password: "{{ user.name | password_hash('sha512') }}"
+    update_password: on_create
+    group: "{{ user.name }}"
+    uid: 1000
+    shell: "{{ user.shell }}"
+
+- name: Add user to sudoers
+  copy:
+    dest: "/etc/sudoers.d/10-{{ user.name }}"
+    content: "{{ user.name }} ALL=(ALL) ALL"
+    validate: "visudo -cf %s"

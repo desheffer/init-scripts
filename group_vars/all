@@ -1,2 +1,4 @@
 user:
   name: desheffer
+  fullname: Doug Sheffer
+  shell: /bin/bash

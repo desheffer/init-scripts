@@ -1,11 +1,17 @@
 ---
 
+- name: Refresh pacman mirrors
+  pacman:
+    update_cache: yes
+
 - name: Install base packages
   pacman:
     name: "{{ item }}"
   with_items:
     - aws-cli
     - base-devel
+    - bash
+    - bash-completion
     - bc
     - coreutils
     - git
@@ -16,3 +22,5 @@
     - tree
     - vim
     - yay
+
+- include: user.yml
