@@ -3,7 +3,7 @@
 - name: Clone dotfiles repository
   become_user: "{{ user.name }}"
   git:
-    repo: "git@github.com:desheffer/dotfiles.git"
+    repo: "https://github.com/desheffer/dotfiles.git"
     dest: ~/dotfiles
     accept_hostkey: yes
   register: dotfiles_git
