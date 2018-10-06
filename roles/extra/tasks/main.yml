@@ -1,8 +1,15 @@
 ---
 
+- name: Enable multilib repository
+  replace:
+    dest: /etc/pacman.conf
+    regexp: '\#\[multilib\]\n\#Include = /etc/pacman\.d/mirrorlist'
+    replace: '[multilib]\nInclude = /etc/pacman.d/mirrorlist'
+
 - name: Install extra packages
   pacman:
     name: "{{ item }}"
+    update_cache: yes
   with_items:
     - aws-cli
     - gimp

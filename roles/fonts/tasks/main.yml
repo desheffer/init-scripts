@@ -8,6 +8,7 @@
 - name: Install Noto fonts
   pacman:
     name: "{{ item }}"
+    update_cache: yes
   with_items:
     - noto-fonts
     - noto-fonts-cjk

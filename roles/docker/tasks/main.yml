@@ -3,6 +3,7 @@
 - name: Install Docker
   pacman:
     name: "{{ item }}"
+    update_cache: yes
   with_items:
     - docker
     - docker-compose

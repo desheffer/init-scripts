@@ -9,6 +9,7 @@
 - name: Install Arc theme
   pacman:
     name: arc-gtk-theme
+    update_cache: yes
 
 - name: Install Top Icons
   aur:
