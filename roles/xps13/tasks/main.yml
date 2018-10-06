@@ -1,0 +1,11 @@
+---
+
+- name: Install Intel microcode update files
+  pacman:
+    update_cache: yes
+    name: intel-ucode
+
+- name: Install Intel video driver
+  pacman:
+    update_cache: yes
+    name: libva-intel-driver

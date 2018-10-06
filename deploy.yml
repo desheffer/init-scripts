@@ -11,4 +11,6 @@
     - { role: fonts, tags: ['fonts'] }
     - { role: gdm, tags: ['gdm'] }
     - { role: gnome, tags: ['gnome'] }
+    - { role: grub, tags: ['grub'] }
     - { role: imwheel, tags: ['imwheel'] }
+    - { role: xps13, tags: ['xps13'] }
