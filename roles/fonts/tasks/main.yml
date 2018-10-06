@@ -3,7 +3,7 @@
 - name: Install Nerd Fonts
   become_user: "{{ user.name }}"
   aur:
-    name: nerd-fonts-complete
+    name: nerd-fonts-complete-mono-glyphs
 
 - name: Install Noto fonts
   pacman:
