@@ -4,6 +4,7 @@
   pacman:
     name: "{{ item }}"
   with_items:
+    - aws-cli
     - gimp
     - gvim
     - steam
