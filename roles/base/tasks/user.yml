@@ -14,8 +14,8 @@
     uid: 1000
     shell: "{{ user.shell }}"
 
-- name: Add user to sudoers
-  copy:
+- name: Allow user to sudo
+  template:
+    src: sudoers.conf
     dest: "/etc/sudoers.d/10-{{ user.name }}"
-    content: "{{ user.name }} ALL=(ALL) ALL"
     validate: "visudo -cf %s"

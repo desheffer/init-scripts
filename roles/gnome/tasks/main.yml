@@ -12,9 +12,9 @@
     update_cache: yes
 
 - name: Install Top Icons
+  become_user: "{{ user.name }}"
   aur:
     name: gnome-shell-extension-topicons-plus-huttli-git
-    user: "{{ user.name }}"
 
 - name: Copy dconf user profile
   copy:

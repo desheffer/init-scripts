@@ -1,9 +1,9 @@
 ---
 
 - name: Install imwheel
+  become_user: "{{ user.name }}"
   aur:
     name: imwheel
-    user: "{{ user.name }}"
 
 - name: Copy imwheel config
   become_user: "{{ user.name }}"

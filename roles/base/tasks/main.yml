@@ -1,5 +1,7 @@
 ---
 
+- include: user.yml
+
 - name: Install base packages
   pacman:
     name: "{{ item }}"
@@ -17,6 +19,10 @@
     - tmux
     - tree
     - vim
-    - yay
 
-- include: user.yml
+- name: Install yay
+  become_user: "{{ user.name }}"
+  aur:
+    name: yay
+    use: makepkg
+    skip_installed: yes
