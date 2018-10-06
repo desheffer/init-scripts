@@ -1,0 +1,11 @@
+---
+
+- name: Create custom wallpaper directory
+  file:
+    path: /usr/share/backgrounds/custom
+    state: directory
+
+- name: Download Small Memory
+  get_url:
+    url: https://cdn.dribbble.com/users/5031/screenshots/3713646/attachments/832536/wallpaper_mikael_gustafsson.png
+    dest: /usr/share/backgrounds/custom/Small_Memory.png

@@ -14,3 +14,4 @@
     - { role: grub, tags: ['grub'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: xps13, tags: ['xps13'] }
+    - { role: wallpaper, tags: ['wallpaper'] }
