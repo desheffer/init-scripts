@@ -12,8 +12,11 @@
     update_cache: yes
   with_items:
     - aws-cli
+    - dconf-editor
     - gimp
+    - gnome-tweaks
     - gvim
+    - inkscape
     - steam
     - steam-native-runtime
 
