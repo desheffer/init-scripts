@@ -33,3 +33,9 @@
     dest: /etc/dconf/db/gnome.d/00-desheffer
   notify:
     - Update dconf
+
+- name: Start NetworkManager
+  service:
+    name: NetworkManager
+    enabled: yes
+    state: started
