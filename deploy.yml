@@ -11,3 +11,4 @@
     - { role: fonts, tags: ['fonts'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: docker, tags: ['docker'] }
+    - { role: imwheel, tags: ['imwheel'] }

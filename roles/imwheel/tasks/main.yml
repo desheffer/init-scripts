@@ -1,0 +1,12 @@
+---
+
+- name: Install imwheel
+  aur:
+    name: imwheel
+    user: "{{ user.name }}"
+
+- name: Copy imwheel config
+  become_user: "{{ user.name }}"
+  copy:
+    src: imwheelrc
+    dest: ~/.imwheelrc
