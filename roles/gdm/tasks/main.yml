@@ -10,3 +10,8 @@
   service:
     name: gdm
     enabled: yes
+
+- name: Copy dconf gdm profile
+  copy:
+    src: gdm
+    dest: /etc/dconf/profile/gdm
