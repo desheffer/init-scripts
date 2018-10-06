@@ -5,3 +5,29 @@
     name: "{{ item }}"
   with_items:
     - gnome
+
+- name: Install Arc theme
+  pacman:
+    name: arc-gtk-theme
+
+- name: Install Top Icons
+  aur:
+    name: gnome-shell-extension-topicons-plus-huttli-git
+    user: "{{ user.name }}"
+
+- name: Copy dconf user profile
+  copy:
+    src: user
+    dest: /etc/dconf/profile/user
+
+- name: Create GNOME configuration directory
+  file:
+    path: /etc/dconf/db/gnome.d
+    state: directory
+
+- name: Copy GNOME configuration
+  template:
+    src: gnome.conf
+    dest: /etc/dconf/db/gnome.d/00-desheffer
+  notify:
+    - Update dconf
