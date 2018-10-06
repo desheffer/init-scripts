@@ -12,6 +12,7 @@
     - bash-completion
     - bc
     - coreutils
+    - fwupd
     - git
     - jq
     - rsync
