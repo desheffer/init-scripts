@@ -11,11 +11,13 @@
     name: "{{ item }}"
     update_cache: yes
   with_items:
+    - aspell-en
     - aws-cli
     - dconf-editor
     - gimp
     - gnome-tweaks
     - gvim
+    - hunspell-en_US
     - inkscape
     - libreoffice-fresh
     - steam
