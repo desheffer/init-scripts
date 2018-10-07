@@ -1,0 +1,25 @@
+---
+
+- name: Install TLP
+  pacman:
+    update_cache: yes
+    name: tlp
+
+- name: Copy TLP configuration
+  template:
+    src: tlp.conf
+    dest: /etc/default/tlp
+  notify:
+    - Restart TLP
+
+- name: Enable TLP
+  service:
+    name: tlp
+    enabled: yes
+    state: started
+
+- name: Enable TLP sleep
+  service:
+    name: tlp-sleep
+    enabled: yes
+    state: started

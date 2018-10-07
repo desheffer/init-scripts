@@ -5,7 +5,5 @@
     update_cache: yes
     name: intel-ucode
 
-- name: Install Intel video driver
-  pacman:
-    update_cache: yes
-    name: libva-intel-driver
+- include: video.yml
+- include: tlp.yml
