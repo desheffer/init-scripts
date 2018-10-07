@@ -15,7 +15,7 @@
     - noto-fonts-emoji
 
 - name: Apply local font configuration
-  copy:
+  template:
     src: local.conf
     dest: /etc/fonts/local.conf
 

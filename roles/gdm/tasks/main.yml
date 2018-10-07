@@ -13,6 +13,6 @@
     enabled: yes
 
 - name: Copy dconf gdm profile
-  copy:
+  template:
     src: gdm
     dest: /etc/dconf/profile/gdm

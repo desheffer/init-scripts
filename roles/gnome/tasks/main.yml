@@ -18,7 +18,7 @@
     - numix-icon-theme-pack-git
 
 - name: Copy dconf user profile
-  copy:
+  template:
     src: user
     dest: /etc/dconf/profile/user
 
