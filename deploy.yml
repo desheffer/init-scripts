@@ -5,13 +5,15 @@
   roles:
     - { role: base, tags: ['base'] }
     - { role: dconf, tags: ['dconf'] }
+    - { role: grub, tags: ['grub'] }
+
+    - { role: fonts, tags: ['fonts'] }
+    - { role: wallpaper, tags: ['wallpaper'] }
+    - { role: gdm, tags: ['gdm'] }
+    - { role: gnome, tags: ['gnome'] }
+
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: extra, tags: ['extra'] }
-    - { role: fonts, tags: ['fonts'] }
-    - { role: gdm, tags: ['gdm'] }
-    - { role: gnome, tags: ['gnome'] }
-    - { role: grub, tags: ['grub'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: xps13, tags: ['xps13'] }
-    - { role: wallpaper, tags: ['wallpaper'] }

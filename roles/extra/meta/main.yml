@@ -1,5 +1,0 @@
----
-
-dependencies:
-  - { role: fonts }
-  - { role: gnome }
