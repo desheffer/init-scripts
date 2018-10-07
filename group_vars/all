@@ -2,3 +2,5 @@ user:
   name: desheffer
   fullname: Doug Sheffer
   shell: /bin/bash
+
+kernel_parameters: "quiet loglevel=3"
