@@ -1,0 +1,7 @@
+---
+
+- name: Enable TRIM timer
+  service:
+    name: fstrim.timer
+    enabled: yes
+    state: started
