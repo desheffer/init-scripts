@@ -15,7 +15,7 @@
   aur:
     name: "{{ item }}"
   with_items:
-    - nerd-fonts-complete-mono-glyphs
+    - nerd-fonts-dejavu-complete
 
 - name: Apply local font configuration
   template:
