@@ -14,12 +14,12 @@
 
 - name: Enable TLP
   service:
-    name: tlp
+    name: tlp.service
     enabled: yes
     state: started
 
 - name: Enable TLP sleep
   service:
-    name: tlp-sleep
+    name: tlp-sleep.service
     enabled: yes
     state: started

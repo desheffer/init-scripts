@@ -36,6 +36,6 @@
 
 - name: Start NetworkManager
   service:
-    name: NetworkManager
+    name: NetworkManager.service
     enabled: yes
     state: started

@@ -2,5 +2,5 @@
 
 - name: Restart TLP
   service:
-    name: tlp
+    name: tlp.service
     state: restarted

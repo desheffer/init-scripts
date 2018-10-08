@@ -9,7 +9,7 @@
 
 - name: Enable GDM
   service:
-    name: gdm
+    name: gdm.service
     enabled: yes
 
 - name: Copy dconf gdm profile
