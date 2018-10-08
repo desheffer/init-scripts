@@ -1,18 +1,21 @@
 ---
 
-- name: Install Nerd Fonts
-  become_user: "{{ user.name }}"
-  aur:
-    name: nerd-fonts-complete-mono-glyphs
-
-- name: Install Noto fonts
+- name: Install font packages
   pacman:
     name: "{{ item }}"
     update_cache: yes
   with_items:
+    - cantarell-fonts
     - noto-fonts
     - noto-fonts-cjk
     - noto-fonts-emoji
+
+- name: Install font AUR packages
+  become_user: "{{ user.name }}"
+  aur:
+    name: "{{ item }}"
+  with_items:
+    - nerd-fonts-complete-mono-glyphs
 
 - name: Apply local font configuration
   template:
