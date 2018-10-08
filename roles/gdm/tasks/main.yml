@@ -16,3 +16,15 @@
   template:
     src: gdm
     dest: /etc/dconf/profile/gdm
+
+- name: Create GDM configuration directory
+  file:
+    path: /etc/dconf/db/gdm.d
+    state: directory
+
+- name: Copy GDM configuration
+  template:
+    src: gdm.conf
+    dest: /etc/dconf/db/gdm.d/00-desheffer
+  notify:
+    - Update dconf
