@@ -1,0 +1,39 @@
+---
+
+- name: Create boot configuration
+  command: "bootctl --path=/boot install"
+  args:
+    creates: /boot/loader/loader.conf
+
+- name: Create boot loader configuration
+  template:
+    src: loader.conf
+    dest: /boot/loader/loader.conf
+
+- name: Get UUID of root partition
+  command: "findmnt -n -o UUID /"
+  args:
+    creates: /boot/loader/entries/arch.conf
+  register: root_uuid
+
+- name: Create boot entry configuration
+  template:
+    src: arch.conf
+    dest: /boot/loader/entries/arch.conf
+  when: root_uuid
+
+- name: Configure ramdisk modules
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: "^MODULES="
+    line: "MODULES=(ext4)"
+  notify:
+    - Generate ramdisk
+
+- name: Configure ramdisk hooks
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: "^HOOKS="
+    line: "HOOKS=(base udev autodetect modconf block keymap encrypt lvm2 resume filesystems keyboard fsck)"
+  notify:
+    - Generate ramdisk

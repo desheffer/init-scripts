@@ -1,6 +1,10 @@
+hostname: ethereal
+
+kernel_parameters: "quiet"
+
+timezone: America/New_York
+
 user:
   name: desheffer
   fullname: Doug Sheffer
   shell: /bin/bash
-
-kernel_parameters: "quiet loglevel=3"

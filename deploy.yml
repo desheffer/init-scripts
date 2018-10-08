@@ -4,9 +4,9 @@
   become: yes
   roles:
     - { role: base, tags: ['base'] }
-    - { role: dconf, tags: ['dconf'] }
-    - { role: grub, tags: ['grub'] }
+    - { role: boot, tags: ['boot'] }
 
+    - { role: dconf, tags: ['dconf'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: gdm, tags: ['gdm'] }

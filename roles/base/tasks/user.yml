@@ -14,6 +14,11 @@
     uid: 1000
     shell: "{{ user.shell }}"
 
+- name: Create sudo configuration directory
+  file:
+    path: /etc/sudoers.d
+    state: directory
+
 - name: Allow user to sudo
   template:
     src: sudoers.conf

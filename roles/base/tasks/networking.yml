@@ -1,0 +1,11 @@
+---
+
+- name: Set hostname
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Enable DHCP
+  service:
+    name: dhcpcd.service
+    enabled: yes
+    state: started

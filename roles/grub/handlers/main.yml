@@ -1,4 +1,0 @@
----
-
-- name: Rebuild GRUB
-  command: "grub-mkconfig -o /boot/grub/grub.cfg"

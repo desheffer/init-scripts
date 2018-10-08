@@ -1,29 +1,7 @@
 ---
 
+- include: networking.yml
+- include: time.yml
+- include: locale.yml
 - include: user.yml
-
-- name: Install base packages
-  pacman:
-    name: "{{ item }}"
-    update_cache: yes
-  with_items:
-    - base-devel
-    - bash
-    - bash-completion
-    - bc
-    - coreutils
-    - fwupd
-    - git
-    - htop
-    - jq
-    - rsync
-    - the_silver_searcher
-    - tmux
-    - tree
-
-- name: Install yay
-  become_user: "{{ user.name }}"
-  aur:
-    name: yay
-    use: makepkg
-    skip_installed: yes
+- include: packages.yml

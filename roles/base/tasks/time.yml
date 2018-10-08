@@ -1,0 +1,10 @@
+---
+
+- name: Set time zone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Set system clock
+  command: "hwclock --systohc"
+  args:
+    creates: /etc/adjtime
