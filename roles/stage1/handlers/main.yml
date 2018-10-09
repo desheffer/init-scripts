@@ -2,3 +2,6 @@
 
 - name: Generate locales
   command: "locale-gen"
+
+- name: Generate ramdisk
+  command: "mkinitcpio -p linux"
