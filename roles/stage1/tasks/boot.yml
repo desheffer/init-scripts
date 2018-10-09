@@ -26,3 +26,8 @@
     dest: /etc/mkinitcpio.conf
   notify:
     - Generate ramdisk
+
+- name: Install pacman hook to upgrade systemd-boot
+  become_user: "{{ user.name }}"
+  aur:
+    name: systemd-boot-pacman-hook

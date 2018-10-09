@@ -4,6 +4,6 @@
 - include: networking.yml
 - include: locale.yml
 - include: packages.yml
-- include: boot.yml
 - include: user.yml
 - include: aur.yml
+- include: boot.yml
