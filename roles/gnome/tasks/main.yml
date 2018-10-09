@@ -3,7 +3,6 @@
 - name: Install GNOME packages
   pacman:
     name: "{{ item }}"
-    update_cache: yes
   with_items:
     - arc-gtk-theme
     - gnome

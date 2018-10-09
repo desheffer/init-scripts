@@ -7,5 +7,4 @@
 
 - name: Install Intel VA-API driver
   pacman:
-    update_cache: yes
     name: libva-intel-driver

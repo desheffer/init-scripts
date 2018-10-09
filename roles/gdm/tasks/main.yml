@@ -3,7 +3,6 @@
 - name: Install GDM
   pacman:
     name: "{{ item }}"
-    update_cache: yes
   with_items:
     - gdm
 

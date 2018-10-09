@@ -2,7 +2,6 @@
 
 - name: Install Intel microcode update files
   pacman:
-    update_cache: yes
     name: intel-ucode
 
 - include: video.yml

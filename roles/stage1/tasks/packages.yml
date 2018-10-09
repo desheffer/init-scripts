@@ -5,10 +5,14 @@
     src: pacman.conf
     dest: /etc/pacman.conf
 
+- name: Update pacman
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
 - name: Install base packages
   pacman:
     name: "{{ item }}"
-    update_cache: yes
   with_items:
     - base-devel
     - bash
