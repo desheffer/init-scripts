@@ -16,6 +16,7 @@ fi
 pacman -S --needed --noconfirm python-pip python-virtualenv
 rm -rf venv
 virtualenv venv
+
 source venv/bin/activate
 pip install -r requirements.txt
 

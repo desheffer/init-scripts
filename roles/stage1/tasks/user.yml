@@ -8,8 +8,6 @@
   user:
     name: "{{ user.name }}"
     comment: "{{ user.fullname }}"
-    password: "{{ user.name | password_hash('sha512') }}"
-    update_password: on_create
     group: "{{ user.name }}"
     uid: 1000
     shell: "{{ user.shell }}"
@@ -24,3 +22,15 @@
     src: sudoers.conf
     dest: "/etc/sudoers.d/10-{{ user.name }}"
     validate: "visudo -cf %s"
+
+- name: Set user password
+  user:
+    name: "{{ user.name }}"
+    password: "{{ password | password_hash('sha512') }}"
+  when: password
+
+- name: Set root password
+  user:
+    name: root
+    password: "{{ password | password_hash('sha512') }}"
+  when: password

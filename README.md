@@ -73,11 +73,6 @@ Run **stage 1**:
     ./init.sh
     ./stage1.sh
 
-Set passwords:
-
-    passwd
-    passwd desheffer
-
 Reboot:
 
     exit

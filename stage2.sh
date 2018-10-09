@@ -3,6 +3,7 @@
 cd "$(dirname "$0")"
 
 source ./init.sh --needed
+source venv/bin/activate
 
 FLAGS=""
 if [ ! -z "$1" ]; then
