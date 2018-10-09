@@ -1,20 +1,15 @@
 ---
 
-- name: Set locale for locale-gen
+- name: Set locale.get
   lineinfile:
     path: /etc/locale.gen
-    regexp: "^#?en_US.UTF-8 UTF-8"
-    line: "en_US.UTF-8 UTF-8"
+    regexp: "^#?{{ locale.locale }} {{ locale.charset }}"
+    line: "{{ locale.locale }} {{ locale.charset }}"
   notify:
     - Generate locales
 
-- name: Create locale configuration
-  file:
-    path: /etc/locale.conf
-    state: file
-
-- name: Set locale
-  lineinfile:
-    path: /etc/locale.conf
-    regexp: "^LANG="
-    line: "LANG=en_US.UTF-8"
+- name: Set locale.conf
+  copy:
+    dest: /etc/locale.conf
+    content: "LANG={{ locale.locale }}"
+    force: no
