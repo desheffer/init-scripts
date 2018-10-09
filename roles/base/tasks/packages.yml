@@ -1,5 +1,10 @@
 ---
 
+- name: Copy pacman configuration
+  template:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+
 - name: Install base packages
   pacman:
     name: "{{ item }}"
@@ -17,12 +22,23 @@
     - htop
     - jq
     - net-tools
+    - reflector
     - rsync
     - the_silver_searcher
     - tmux
     - tree
     - wireless_tools
     - wpa_supplicant
+
+- name: Create pacman hook directory
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+
+- name: Copy pacman hook to update mirror list
+  template:
+    src: mirrorlist.hook
+    dest: /etc/pacman.d/hooks/mirrorlist.hook
 
 - name: Install yay
   become_user: "{{ user.name }}"

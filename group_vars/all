@@ -2,6 +2,8 @@ hostname: ethereal
 
 kernel_parameters: "quiet"
 
+reflector: --country US --protocol https --latest 10 --sort rate
+
 timezone: America/New_York
 
 user:
