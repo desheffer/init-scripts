@@ -39,16 +39,16 @@ Format the partitions:
     cryptsetup luksOpen /dev/sda2 luks
 
     pvcreate /dev/mapper/luks
-    vgcreate arch /dev/mapper/luks
-    lvcreate -L 8G arch -n swap
-    lvcreate -l +100%FREE arch -n root
+    vgcreate vg0 /dev/mapper/luks
+    lvcreate -L 8G vg0 -n swap
+    lvcreate -l +100%FREE vg0 -n root
     lvdisplay
 
-    mkfs.ext4 /dev/mapper/arch-root
-    mkswap /dev/mapper/arch-swap
+    mkfs.ext4 /dev/mapper/vg0-root
+    mkswap /dev/mapper/vg0-swap
 
-    mount /dev/mapper/arch-root /mnt
-    swapon /dev/mapper/arch-swap
+    mount /dev/mapper/vg0-root /mnt
+    swapon /dev/mapper/vg0-swap
 
     mkdir /mnt/boot
     mount /dev/sda1 /mnt/boot

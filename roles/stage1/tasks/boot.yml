@@ -11,7 +11,7 @@
     dest: /boot/loader/loader.conf
 
 - name: Get UUID of root partition
-  shell: "blkid -t TYPE=crypto_LUKS -o export | grep '^UUID='"
+  command: "blkid -t TYPE=crypto_LUKS -s UUID -o value"
   register: root_uuid
   changed_when: False
 
