@@ -6,7 +6,11 @@ cd "$(dirname "$0")"
 
 if [ "$USER" != "root" ]; then
     echo "$0: must be root"
-    exit
+    exit 1
+fi
+
+if [ -d venv ] && [ "$1" == "--needed" ]; then
+    return
 fi
 
 pacman -S --needed --noconfirm python-pip python-virtualenv
