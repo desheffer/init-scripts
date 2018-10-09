@@ -8,16 +8,6 @@ Please be advised that this playbook is designed solely to address my own use
 cases. It may provide a helpful starting point for other projects, but your
 mileage may vary.
 
-## Running the playbook
-
-Install dependencies (only required on the first run):
-
-    ./init.sh
-
-Run the playbook:
-
-    ./deploy.sh
-
 ## Installing Arch Linux
 
 If you're starting from scratch, then install Arch Linux according to the
@@ -75,13 +65,13 @@ Change root into the new system:
 
     arch-chroot /mnt
 
-Run the playbook:
+Run **stage 1**:
 
     git clone https://github.com/desheffer/init-scripts /root/init-scripts
 
     cd /root/init-scripts
     ./init.sh
-    ./deploy.sh
+    ./stage1.sh
 
 Set passwords:
 
@@ -92,4 +82,13 @@ Reboot:
 
     exit
     umount -R /mnt
+    reboot
+
+Run **stage 2**:
+
+    cd /root/init-scripts
+    ./stage2.sh
+
+Reboot into the new system:
+
     reboot

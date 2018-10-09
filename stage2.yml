@@ -3,17 +3,13 @@
 - hosts: localhost
   become: yes
   roles:
-    - { role: base, tags: ['base'] }
-    - { role: boot, tags: ['boot'] }
-
     - { role: dconf, tags: ['dconf'] }
-    - { role: fonts, tags: ['fonts'] }
-    - { role: wallpaper, tags: ['wallpaper'] }
-    - { role: gdm, tags: ['gdm'] }
-    - { role: gnome, tags: ['gnome'] }
-
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: extra, tags: ['extra'] }
+    - { role: fonts, tags: ['fonts'] }
+    - { role: gdm, tags: ['gdm'] }
+    - { role: gnome, tags: ['gnome'] }
     - { role: imwheel, tags: ['imwheel'] }
+    - { role: wallpaper, tags: ['wallpaper'] }
     - { role: xps13, tags: ['xps13'] }

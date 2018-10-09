@@ -15,4 +15,4 @@ if [ ! -z "$1" ]; then
 fi
 
 source venv/bin/activate
-ansible-playbook $FLAGS deploy.yml
+ansible-playbook $FLAGS stage1.yml
