@@ -1,6 +1,6 @@
 ---
 
-- name: Set locale.get
+- name: Set locale.gen
   lineinfile:
     path: /etc/locale.gen
     regexp: "^#?{{ locale.locale }} {{ locale.charset }}"
