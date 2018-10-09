@@ -1,9 +1,5 @@
 ---
 
-- name: Install Intel microcode update files
-  pacman:
-    name: intel-ucode
-
 - include: video.yml
 - include: tlp.yml
 - include: ssd.yml

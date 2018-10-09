@@ -23,6 +23,7 @@
     - fwupd
     - git
     - htop
+    - intel-ucode
     - jq
     - net-tools
     - reflector
