@@ -7,6 +7,6 @@
     state: link
 
 - name: Set system clock
-  command: "hwclock --systohc"
+  command: "hwclock --systohc --utc"
   args:
     creates: /etc/adjtime
