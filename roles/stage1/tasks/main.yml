@@ -3,6 +3,7 @@
 - include: time.yml
 - include: networking.yml
 - include: locale.yml
-- include: user.yml
 - include: packages.yml
 - include: boot.yml
+- include: user.yml
+- include: aur.yml
