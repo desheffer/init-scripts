@@ -1,0 +1,10 @@
+---
+
+- name: Install imwheel
+  aur:
+    name: imwheel
+
+- name: Copy imwheel config
+  template:
+    src: imwheelrc
+    dest: ~/.imwheelrc

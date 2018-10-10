@@ -1,0 +1,45 @@
+---
+
+- name: Copy pacman configuration
+  become: yes
+  template:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+
+- name: Update pacman
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install base packages
+  become: yes
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - bash-completion
+    - bc
+    - fwupd
+    - git
+    - htop
+    - jq
+    - reflector
+    - rsync
+    - the_silver_searcher
+    - tmux
+    - tree
+
+- name: Create pacman hook directory
+  become: yes
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+
+- name: Install pacman hook to upgrade systemd-boot
+  aur:
+    name: systemd-boot-pacman-hook
+
+- name: Copy pacman hook to update mirror list
+  become: yes
+  template:
+    src: mirrorlist.hook
+    dest: /etc/pacman.d/hooks/mirrorlist.hook

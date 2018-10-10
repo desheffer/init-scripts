@@ -1,0 +1,7 @@
+---
+
+- name: Create dconf profile directory
+  become: yes
+  file:
+    path: /etc/dconf/profile
+    state: directory

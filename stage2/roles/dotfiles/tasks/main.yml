@@ -1,0 +1,12 @@
+---
+
+- name: Clone dotfiles repository
+  git:
+    repo: "https://github.com/desheffer/dotfiles.git"
+    dest: ~/dotfiles
+    accept_hostkey: yes
+  register: dotfiles_git
+
+- name: Install dotfiles
+  command: "~/dotfiles/bootstrap.sh -f"
+  when: dotfiles_git.after != dotfiles_git.before

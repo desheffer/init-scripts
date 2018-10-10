@@ -1,9 +1,0 @@
----
-
-- hosts: localhost
-  become: yes
-  roles:
-    - { role: stage1, tags: ['stage1'] }
-  vars_prompt:
-    - name: password
-      prompt: "New root and user password"

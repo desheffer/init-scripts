@@ -1,8 +1,0 @@
----
-
-- name: Install yay
-  become_user: "{{ user.name }}"
-  aur:
-    name: yay
-    use: makepkg
-    skip_installed: yes

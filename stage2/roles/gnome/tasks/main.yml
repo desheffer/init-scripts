@@ -1,0 +1,44 @@
+---
+
+- name: Install GNOME packages
+  become: yes
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - arc-gtk-theme
+    - gnome
+
+- name: Install GNOME AUR packages
+  aur:
+    name: "{{ item }}"
+  with_items:
+    - gnome-shell-extension-dash-to-dock
+    - gnome-shell-extension-topicons-plus-huttli-git
+    - numix-icon-theme-pack-git
+
+- name: Copy dconf user profile
+  become: yes
+  template:
+    src: user
+    dest: /etc/dconf/profile/user
+
+- name: Create GNOME configuration directory
+  become: yes
+  file:
+    path: /etc/dconf/db/gnome.d
+    state: directory
+
+- name: Copy GNOME configuration
+  become: yes
+  template:
+    src: gnome.conf
+    dest: /etc/dconf/db/gnome.d/00-desheffer
+  notify:
+    - Update dconf
+
+- name: Start NetworkManager
+  become: yes
+  service:
+    name: NetworkManager.service
+    enabled: yes
+    state: started

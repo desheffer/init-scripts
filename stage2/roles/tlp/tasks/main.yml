@@ -1,0 +1,28 @@
+---
+
+- name: Install TLP
+  become: yes
+  pacman:
+    name: tlp
+
+- name: Copy TLP configuration
+  become: yes
+  template:
+    src: tlp.conf
+    dest: /etc/default/tlp
+  notify:
+    - Restart TLP
+
+- name: Enable TLP
+  become: yes
+  service:
+    name: tlp.service
+    enabled: yes
+    state: started
+
+- name: Enable TLP sleep
+  become: yes
+  service:
+    name: tlp-sleep.service
+    enabled: yes
+    state: started

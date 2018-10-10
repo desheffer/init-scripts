@@ -1,0 +1,5 @@
+---
+
+- name: Update dconf
+  become: yes
+  command: "dconf update"
