@@ -13,6 +13,7 @@
     - hunspell-en_US
     - inkscape
     - libreoffice-fresh
+    - libva-intel-driver
     - steam
     - steam-native-runtime
 

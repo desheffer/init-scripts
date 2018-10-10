@@ -8,8 +8,9 @@
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gdm, tags: ['gdm'] }
+    - { role: ssd, tags: ['laptop'] }
+    - { role: tlp, tags: ['laptop'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: extra, tags: ['extra'] }
-    - { role: xps13, tags: ['xps13'] }
