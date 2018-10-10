@@ -1,10 +1,9 @@
 ---
 
 - name: Set hostname
-  file:
-    path: /etc/hostname
+  copy:
+    dest: /etc/hostname
     content: "{{ hostname }}"
-    force: no
 
 - name: Enable DHCP
   file:

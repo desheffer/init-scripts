@@ -27,10 +27,10 @@
   user:
     name: "{{ user.name }}"
     password: "{{ password | password_hash('sha512') }}"
-  when: password
+  when: password != ""
 
 - name: Set root password
   user:
     name: root
     password: "{{ password | password_hash('sha512') }}"
-  when: password
+  when: password != ""

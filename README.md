@@ -70,7 +70,6 @@ Run **stage 1**:
     git clone https://github.com/desheffer/init-scripts /root/init-scripts
 
     cd /root/init-scripts
-    ./init.sh
     ./stage1.sh
 
 Reboot:

@@ -12,4 +12,3 @@
   copy:
     dest: /etc/locale.conf
     content: "LANG={{ locale.locale }}"
-    force: no
