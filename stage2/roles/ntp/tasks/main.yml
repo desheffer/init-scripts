@@ -1,0 +1,16 @@
+---
+
+- name: Copy systemd-timesyncd configuration file
+  become: yes
+  template:
+    src: timesyncd.conf
+    dest: /etc/systemd/timesyncd.conf
+
+- name: Get systemd-timesyncd status
+  command: "timedatectl show"
+  register: timedatectl_before
+  changed_when: False
+
+- name: Enable systemd-timesyncd
+  shell: "timedatectl set-ntp true"
+  changed_when: "'NTP=no' in timedatectl_before.stdout"

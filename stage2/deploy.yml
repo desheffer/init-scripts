@@ -5,6 +5,7 @@
     - { role: base, tags: ['base'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: fonts, tags: ['fonts'] }
+    - { role: ntp, tags: ['ntp'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gdm, tags: ['gdm'] }
