@@ -111,13 +111,46 @@ echo "${HOSTNAME}" > /mnt/etc/hostname
 
 arch_chroot "ln -sf /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/multi-user.target.wants/dhcpcd.service"
 
+# Create user:
+
+arch_chroot "useradd -m -c '${FULLNAME}' ${USER}"
+
+arch_chroot "mkdir -p /etc/sudoers.d"
+cat > /mnt/etc/sudoers.d/10-${USER} <<EOL
+${USER} ALL=(ALL) ALL
+EOL
+
+# Install base packages:
+
+arch_chroot "pacman -S --needed --noconfirm \
+    base-devel \
+    bash \
+    coreutils \
+    dialog \
+    git \
+    go \
+    intel-ucode \
+    net-tools \
+    python \
+    python-pip \
+    python-virtualenv \
+    sudo \
+    wireless_tools \
+    wpa_supplicant"
+
+# Install yay:
+
+arch_chroot "sudo -u ${USER} git clone https://aur.archlinux.org/yay.git /tmp/yay"
+arch_chroot "(cd /tmp/yay && sudo -u ${USER} makepkg -si --noconfirm)"
+arch_chroot "rm -rf /tmp/yay"
+
 # Configure video:
 
 echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > /mnt/etc/modprobe.d/i915.conf
 
 # Install bootloader:
 
-arch_chroot bootctl --path=/boot install
+arch_chroot "bootctl --path=/boot install"
 
 cat > /mnt/boot/loader/loader.conf <<EOL
 timeout 0
@@ -140,38 +173,6 @@ arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keyma
 
 arch_chroot "mkinitcpio -p linux"
 
-# Create user:
-
-arch_chroot "useradd -m -c '${FULLNAME}' ${USER}"
-
-arch_chroot mkdir -p /etc/sudoers.d
-cat > /mnt/etc/sudoers.d/10-${USER} <<EOL
-${USER} ALL=(ALL) ALL
-EOL
-
-# Install base packages:
-
-arch_chroot "pacman -S --needed --noconfirm \
-    base-devel \
-    bash \
-    coreutils \
-    dialog \
-    git \
-    go \
-    intel-ucode \
-    net-tools \
-    python \
-    python-pip \
-    python-virtualenv \
-    wireless_tools \
-    wpa_supplicant"
-
-# Install yay:
-
-arch_chroot "sudo -u ${USER} git clone https://aur.archlinux.org/yay.git /tmp/yay"
-arch_chroot "(cd /tmp/yay && sudo -u ${USER} makepkg -si --noconfirm)"
-arch_chroot "rm -rf /tmp/yay"
-
 # Clone this repository so it's available after reboot:
 
 arch_chroot "sudo -u ${USER} git clone https://github.com/desheffer/init-scripts.git /home/${USER}/init-scripts"
@@ -188,6 +189,7 @@ arch_chroot "passwd ${USER}"
 
 confirm
 
+echo "Unmounting disks..."
 umount -R /mnt
 
 echo "Rebooting..."
