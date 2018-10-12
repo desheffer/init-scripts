@@ -6,6 +6,8 @@
     name: "{{ item }}"
   with_items:
     - cantarell-fonts
+    - ttf-dejavu
+    - ttf-liberation
     - noto-fonts
     - noto-fonts-cjk
     - noto-fonts-emoji
