@@ -1,0 +1,4 @@
+---
+
+- name: Install dotfiles
+  command: "~/dotfiles/bootstrap.sh -f"

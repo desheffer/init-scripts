@@ -25,7 +25,6 @@
   systemd:
     name: tlp-sleep.service
     enabled: yes
-    state: started
 
 - name: Mask systemd radio service
   become: yes
