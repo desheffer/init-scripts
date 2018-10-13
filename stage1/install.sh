@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "$(dirname "${0}")"
 
 arch_chroot() {
     arch-chroot /mnt /bin/bash -c "${1}"
@@ -10,8 +10,9 @@ arch_chroot() {
 
 confirm() {
     CONFIRM=
-    while [ "$CONFIRM" != "y" ]; do
-        read -n 1 -r -s CONFIRM
+    while [ "${CONFIRM}" != "y" ]; do
+        read -n 1 -r -s -p "${1}" CONFIRM
+        echo
     done
 }
 
@@ -48,11 +49,12 @@ INSTALL_PASSWORD=
 INSTALL_PASSWORD_CONFIRM=
 while [ -z "${INSTALL_PASSWORD}" ] || [ "${INSTALL_PASSWORD}" != "${INSTALL_PASSWORD_CONFIRM}" ]; do
     read -s -p "Password: " INSTALL_PASSWORD
+    echo
     read -s -p "Confirm password: " INSTALL_PASSWORD_CONFIRM
+    echo
 done
 
-echo "Ready to install. Press 'y' to continue..."
-confirm
+confirm "Ready to install. Press 'y' to continue..."
 
 # Update the system clock:
 
@@ -188,13 +190,12 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init
 
 # Change passwords:
 
-arch_chroot "echo '${PASSWORD}\n${PASSWORD}' | passwd"
-arch_chroot "echo '${PASSWORD}\n${PASSWORD}' | passwd ${INSTALL_USER}"
+arch_chroot "echo '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd"
+arch_chroot "echo '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd ${INSTALL_USER}"
 
 # Reboot:
 
-echo "Setup complete. Press 'y' to reboot..."
-confirm
+confirm "Setup complete. Press 'y' to reboot..."
 
 umount -R /mnt
 reboot
