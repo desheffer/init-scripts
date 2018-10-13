@@ -65,7 +65,7 @@ ROOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '3p')
 
 mkfs.vfat -F32 ${BOOTPART}
 
-cryptsetup luksFormat ${ROOTPART}
+cryptsetup -q luksFormat ${ROOTPART}
 cryptsetup luksOpen ${ROOTPART} luks
 
 pvcreate /dev/mapper/luks
