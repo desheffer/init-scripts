@@ -26,20 +26,20 @@ fi
 
 # Collect information:
 
-while [ -z ${DISK+x} ] || [ ! -e "${DISK}" ]; do
-    read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " DISK
+while [ -z ${INSTALL_DISK+x} ] || [ ! -e "${INSTALL_DISK}" ]; do
+    read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " INSTALL_DISK
 done
 
-while [ -z ${HOSTNAME+x} ] || [ -z "${HOSTNAME}" ]; do
-    read -p "Hostname: " HOSTNAME
+while [ -z ${INSTALL_HOSTNAME+x} ] || [ -z "${INSTALL_HOSTNAME}" ]; do
+    read -p "Hostname: " INSTALL_HOSTNAME
 done
 
-while [ -z ${USER+x} ] || [ -z "${USER}" ]; do
-    read -p "Username: " USER
+while [ -z ${INSTALL_USER+x} ] || [ -z "${INSTALL_USER}" ]; do
+    read -p "Username: " INSTALL_USER
 done
 
-while [ -z ${FULLNAME+x} ] || [ -z "${FULLNAME}" ]; do
-    read -p "User fullname: " FULLNAME
+while [ -z ${INSTALL_FULLNAME+x} ] || [ -z "${INSTALL_FULLNAME}" ]; do
+    read -p "User fullname: " INSTALL_FULLNAME
 done
 
 echo "Ready to install..."
@@ -51,17 +51,17 @@ timedatectl set-ntp true
 
 # Partition the disk:
 
-parted -s ${DISK} mklabel gpt
-parted -s ${DISK} mkpart primary fat32 1MiB 513MiB
-parted -s ${DISK} set 1 boot on
-parted -s ${DISK} set 1 esp on
-parted -s ${DISK} mkpart primary 513MiB 100%
-parted -s ${DISK} print
+parted -s ${INSTALL_DISK} mklabel gpt
+parted -s ${INSTALL_DISK} mkpart primary fat32 1MiB 513MiB
+parted -s ${INSTALL_DISK} set 1 boot on
+parted -s ${INSTALL_DISK} set 1 esp on
+parted -s ${INSTALL_DISK} mkpart primary 513MiB 100%
+parted -s ${INSTALL_DISK} print
 
 # Format the partitions:
 
-BOOTPART=$(lsblk -lnp -o NAME ${DISK} | sed -n '2p')
-ROOTPART=$(lsblk -lnp -o NAME ${DISK} | sed -n '3p')
+BOOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '2p')
+ROOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '3p')
 
 mkfs.vfat -F32 ${BOOTPART}
 
@@ -105,7 +105,7 @@ echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
 
 # Set the hostname:
 
-echo "${HOSTNAME}" > /mnt/etc/hostname
+echo "${INSTALL_HOSTNAME}" > /mnt/etc/hostname
 
 # Enable DHCP:
 
@@ -113,11 +113,11 @@ arch_chroot "ln -sf /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/m
 
 # Create user:
 
-arch_chroot "useradd -m -c '${FULLNAME}' ${USER}"
+arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
 arch_chroot "mkdir -p /etc/sudoers.d"
-cat > /mnt/etc/sudoers.d/10-${USER} <<EOL
-${USER} ALL=(ALL) ALL
+cat > /mnt/etc/sudoers.d/10-${INSTALL_USER} <<EOL
+${INSTALL_USER} ALL=(ALL) ALL
 EOL
 
 # Install base packages:
@@ -140,8 +140,8 @@ arch_chroot "pacman -S --needed --noconfirm \
 
 # Install yay:
 
-arch_chroot "sudo -u ${USER} git clone https://aur.archlinux.org/yay.git /tmp/yay"
-arch_chroot "(cd /tmp/yay && sudo -u ${USER} makepkg -si --noconfirm)"
+arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git /tmp/yay"
+arch_chroot "(cd /tmp/yay && sudo -u ${INSTALL_USER} makepkg -si --noconfirm)"
 arch_chroot "rm -rf /tmp/yay"
 
 # Configure video:
@@ -175,15 +175,15 @@ arch_chroot "mkinitcpio -p linux"
 
 # Clone this repository so it's available after reboot:
 
-arch_chroot "sudo -u ${USER} git clone https://github.com/desheffer/init-scripts.git /home/${USER}/init-scripts"
+arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init-scripts.git /home/${INSTALL_USER}/init-scripts"
 
 # Change passwords:
 
 echo "Setting up root..."
 arch_chroot "passwd"
 
-echo "Setting up ${USER}..."
-arch_chroot "passwd ${USER}"
+echo "Setting up ${INSTALL_USER}..."
+arch_chroot "passwd ${INSTALL_USER}"
 
 # Reboot:
 

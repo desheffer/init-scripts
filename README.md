@@ -24,7 +24,7 @@ Connect to wifi:
 
 Run **stage 1**:
 
-    curl -L https://github.com/desheffer/init-scripts/raw/master/stage1/curl.sh | bash
+    bash <(curl -L https://github.com/desheffer/init-scripts/raw/master/stage1/curl.sh)
 
 The system will reboot into the new system when the installation is complete.
 
