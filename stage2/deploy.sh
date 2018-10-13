@@ -1,13 +1,15 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
+set -e
 
-source ./init.sh --needed
-source venv/bin/activate
+cd "$(dirname "${0}")"
+
+./init.sh --needed
 
 FLAGS=""
-if [ ! -z "$1" ]; then
-    FLAGS="-t $1"
+if [ ! -z "${1}" ]; then
+    FLAGS="-t ${1}"
 fi
 
-ansible-playbook --ask-become-pass $FLAGS deploy.yml
+source venv/bin/activate
+ansible-playbook --ask-become-pass ${FLAGS} deploy.yml

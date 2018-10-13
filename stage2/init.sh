@@ -2,15 +2,15 @@
 
 set -e
 
-cd "$(dirname "$0")"
+cd "$(dirname "${0}")"
 
-if [ "$USER" = "root" ]; then
-    echo "$0: should not run as root"
+if [ "${USER}" = "root" ]; then
+    echo "${0}: script should run as a non-privileged user"
     exit 1
 fi
 
-if [ -d venv ] && [ "$1" == "--needed" ]; then
-    return
+if [ -d venv ] && [ "${1}" == "--needed" ]; then
+    exit 0
 fi
 
 rm -rf venv
