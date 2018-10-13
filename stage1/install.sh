@@ -139,7 +139,6 @@ arch_chroot "pacman -S --needed --noconfirm \
     coreutils \
     dialog \
     git \
-    go \
     intel-ucode \
     net-tools \
     python \
@@ -148,12 +147,6 @@ arch_chroot "pacman -S --needed --noconfirm \
     sudo \
     wireless_tools \
     wpa_supplicant"
-
-# Install yay:
-
-arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git /tmp/yay"
-arch_chroot "(cd /tmp/yay && sudo -u ${INSTALL_USER} makepkg -si --noconfirm)"
-arch_chroot "rm -rf /tmp/yay"
 
 # Configure video:
 

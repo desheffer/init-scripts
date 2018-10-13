@@ -44,3 +44,9 @@
   template:
     src: mirrorlist.hook
     dest: /etc/pacman.d/hooks/mirrorlist.hook
+
+- name: Install yay
+  aur:
+    name: yay
+    use: makepkg
+    skip_installed: yes
