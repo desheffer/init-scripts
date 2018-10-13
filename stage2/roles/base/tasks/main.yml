@@ -12,22 +12,6 @@
     update_cache: yes
     upgrade: yes
 
-- name: Install base packages
-  become: yes
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - bash-completion
-    - bc
-    - fwupd
-    - htop
-    - mlocate
-    - reflector
-    - rsync
-    - the_silver_searcher
-    - tmux
-    - tree
-
 - name: Create pacman hook directory
   become: yes
   file:

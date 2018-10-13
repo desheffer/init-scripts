@@ -7,16 +7,27 @@
   with_items:
     - aspell-en
     - aws-cli
+    - bash-completion
+    - bc
     - dconf-editor
+    - fwupd
     - gimp
     - gnome-tweaks
     - gvim
+    - htop
     - hunspell-en_US
     - inkscape
     - jq
     - libreoffice-fresh
     - libva-intel-driver
+    - mlocate
+    - pacman-contrib
+    - reflector
+    - rsync
     - steam
+    - the_silver_searcher
+    - tmux
+    - tree
 
 - name: Install extra AUR packages
   aur:

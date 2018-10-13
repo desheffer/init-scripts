@@ -6,12 +6,12 @@
     - { role: dconf, tags: ['dconf'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: ntp, tags: ['ntp'] }
+    - { role: ssd, tags: ['ssd'] }
+    - { role: tlp, tags: ['tlp'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gdm, tags: ['gdm'] }
-    - { role: ssd, tags: ['laptop'] }
-    - { role: tlp, tags: ['laptop'] }
+    - { role: extra, tags: ['extra'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: imwheel, tags: ['imwheel'] }
-    - { role: extra, tags: ['extra'] }
