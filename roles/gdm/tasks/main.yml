@@ -9,7 +9,7 @@
 
 - name: Enable GDM
   become: yes
-  service:
+  systemd:
     name: gdm.service
     enabled: yes
 

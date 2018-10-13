@@ -15,14 +15,26 @@
 
 - name: Enable TLP
   become: yes
-  service:
+  systemd:
     name: tlp.service
     enabled: yes
     state: started
 
 - name: Enable TLP sleep
   become: yes
-  service:
+  systemd:
     name: tlp-sleep.service
     enabled: yes
     state: started
+
+- name: Mask systemd radio service
+  become: yes
+  systemd:
+    name: systemd-rfkill.service
+    masked: yes
+
+- name: Mask systemd radio socket
+  become: yes
+  systemd:
+    name: systemd-rfkill.socket
+    masked: yes

@@ -18,7 +18,7 @@
     path: /etc/pacman.d/hooks
     state: directory
 
-- name: Install pacman hook to upgrade systemd-boot
+- name: Install pacman hook to update systemd-boot
   aur:
     name: systemd-boot-pacman-hook
 
