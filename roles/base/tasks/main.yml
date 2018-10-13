@@ -6,12 +6,6 @@
     src: pacman.conf
     dest: /etc/pacman.conf
 
-- name: Update pacman
-  become: yes
-  pacman:
-    update_cache: yes
-    upgrade: yes
-
 - name: Create pacman hook directory
   become: yes
   file:
