@@ -5,6 +5,13 @@
   template:
     src: pacman.conf
     dest: /etc/pacman.conf
+  register: pacman_conf
+
+- name: Update pacman cache
+  become: yes
+  pacman:
+    update_cache: yes
+  when: pacman_conf is changed
 
 - name: Create pacman hook directory
   become: yes
@@ -21,9 +28,3 @@
   template:
     src: mirrorlist.hook
     dest: /etc/pacman.d/hooks/mirrorlist.hook
-
-- name: Install yay
-  aur:
-    name: yay
-    use: makepkg
-    skip_installed: yes
