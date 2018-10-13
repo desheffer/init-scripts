@@ -5,13 +5,11 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 arch_chroot() {
-    arch-chroot ${ROOTPART} /bin/bash -c "${1}"
+    arch-chroot /mnt /bin/bash -c "${1}"
 }
 
 confirm() {
-    echo "Press 'y' to continue or Ctrl+C to exit."
-
-    CONFIRM=""
+    CONFIRM=
     while [ "$CONFIRM" != "y" ]; do
         read -n 1 -r -s CONFIRM
     done
@@ -26,23 +24,34 @@ fi
 
 # Collect information:
 
-while [ -z ${INSTALL_DISK+x} ] || [ ! -e "${INSTALL_DISK}" ]; do
+INSTALL_DISK=
+while [ ! -e "${INSTALL_DISK}" ]; do
     read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " INSTALL_DISK
 done
 
-while [ -z ${INSTALL_HOSTNAME+x} ] || [ -z "${INSTALL_HOSTNAME}" ]; do
+INSTALL_HOSTNAME=
+while [ -z "${INSTALL_HOSTNAME}" ]; do
     read -p "Hostname: " INSTALL_HOSTNAME
 done
 
-while [ -z ${INSTALL_USER+x} ] || [ -z "${INSTALL_USER}" ]; do
+INSTALL_USER=
+while [ -z "${INSTALL_USER}" ]; do
     read -p "Username: " INSTALL_USER
 done
 
-while [ -z ${INSTALL_FULLNAME+x} ] || [ -z "${INSTALL_FULLNAME}" ]; do
+INSTALL_FULLNAME=
+while [ -z "${INSTALL_FULLNAME}" ]; do
     read -p "User fullname: " INSTALL_FULLNAME
 done
 
-echo "Ready to install..."
+INSTALL_PASSWORD=
+INSTALL_PASSWORD_CONFIRM=
+while [ -z "${INSTALL_PASSWORD}" ] || [ "${INSTALL_PASSWORD}" != "${INSTALL_PASSWORD_CONFIRM}" ]; do
+    read -s -p "Password: " INSTALL_PASSWORD
+    read -s -p "Confirm password: " INSTALL_PASSWORD_CONFIRM
+done
+
+echo "Ready to install. Press 'y' to continue..."
 confirm
 
 # Update the system clock:
@@ -65,8 +74,8 @@ ROOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '3p')
 
 mkfs.vfat -F32 ${BOOTPART}
 
-cryptsetup -q luksFormat ${ROOTPART}
-cryptsetup luksOpen ${ROOTPART} luks
+echo "${INSTALL_PASSWORD}" | cryptsetup -q luksFormat ${ROOTPART}
+echo "${INSTALL_PASSWORD}" | cryptsetup luksOpen ${ROOTPART} luks
 
 pvcreate /dev/mapper/luks
 vgcreate vg0 /dev/mapper/luks
@@ -179,18 +188,13 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init
 
 # Change passwords:
 
-echo "Setting up root..."
-arch_chroot "passwd"
-
-echo "Setting up ${INSTALL_USER}..."
-arch_chroot "passwd ${INSTALL_USER}"
+arch_chroot "echo '${PASSWORD}\n${PASSWORD}' | passwd"
+arch_chroot "echo '${PASSWORD}\n${PASSWORD}' | passwd ${INSTALL_USER}"
 
 # Reboot:
 
+echo "Setup complete. Press 'y' to reboot..."
 confirm
 
-echo "Unmounting disks..."
 umount -R /mnt
-
-echo "Rebooting..."
 reboot
