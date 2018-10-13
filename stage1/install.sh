@@ -68,6 +68,7 @@ parted -s ${INSTALL_DISK} set 1 boot on
 parted -s ${INSTALL_DISK} set 1 esp on
 parted -s ${INSTALL_DISK} mkpart primary 513MiB 100%
 parted -s ${INSTALL_DISK} print
+aleep 5
 
 # Format the partitions:
 
