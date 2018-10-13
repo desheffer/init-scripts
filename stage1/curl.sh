@@ -4,11 +4,11 @@ set -euo pipefail
 
 # Resize partition:
 
-mount -o remount,size=1G /run/archiso/cowspace
+mount -o remount,size=2G /run/archiso/cowspace
 
 # Clone init-scripts repository:
 
-pacman -Syu --needed --noconfirm git
+pacman -Sy --needed --noconfirm git
 
 rm -rf ~/init-scripts
 git clone https://github.com/desheffer/init-scripts.git ~/init-scripts
