@@ -3,19 +3,17 @@
 - name: Install GNOME packages
   become: yes
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - arc-gtk-theme
-    - gnome
-    - python-psutil
+    name:
+      - arc-gtk-theme
+      - gnome
+      - python-psutil
 
 - name: Install GNOME AUR packages
   aur:
-    name: "{{ item }}"
-  with_items:
-    - gnome-shell-extension-dash-to-dock
-    - gnome-shell-extension-topicons-plus-huttli-git
-    - numix-icon-theme-pack-git
+    name:
+      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-topicons-plus-huttli-git
+      - numix-icon-theme-pack-git
 
 - name: Copy dconf user profile
   become: yes

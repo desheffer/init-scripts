@@ -3,9 +3,7 @@
 - name: Install GDM
   become: yes
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - gdm
+    name: gdm
 
 - name: Enable GDM
   become: yes

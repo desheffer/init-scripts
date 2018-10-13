@@ -3,10 +3,9 @@
 - name: Install Docker
   become: yes
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - docker
-    - docker-compose
+    name:
+      - docker
+      - docker-compose
 
 - name: Add user to the docker group
   become: yes

@@ -3,20 +3,18 @@
 - name: Install font packages
   become: yes
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - cantarell-fonts
-    - ttf-dejavu
-    - ttf-liberation
-    - noto-fonts
-    - noto-fonts-cjk
-    - noto-fonts-emoji
+    name:
+      - cantarell-fonts
+      - ttf-dejavu
+      - ttf-liberation
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
 
 - name: Install font AUR packages
   aur:
-    name: "{{ item }}"
-  with_items:
-    - nerd-fonts-dejavu-complete
+    name:
+      - nerd-fonts-dejavu-complete
 
 - name: Apply local font configuration
   become: yes
