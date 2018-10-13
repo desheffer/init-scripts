@@ -31,4 +31,7 @@ The system will reboot into the new system when the installation is complete.
 Run **stage 2**:
 
     git clone https://github.com/desheffer/init-scripts.git
-    ./init-scripts/stage2/deploy.sh
+    ./init-scripts/deploy.sh
+
+Due to the idempotent nature of Ansible, you can run the playbook again at any
+time to keep the system up-to-date.
