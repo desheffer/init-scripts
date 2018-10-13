@@ -19,7 +19,7 @@ confirm() {
 # Make sure we are running on an install image:
 
 if [ "$(hostname)" != archiso ]; then
-    echo "Error: this does not appear to be an install image"
+    echo "${0}: this does not appear to be an install image"
     exit 1
 fi
 
@@ -183,8 +183,8 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init
 
 # Change passwords:
 
-arch_chroot "echo '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd"
-arch_chroot "echo '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd ${INSTALL_USER}"
+arch_chroot "echo -e '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd"
+arch_chroot "echo -e '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd ${INSTALL_USER}"
 
 # Reboot:
 
