@@ -145,6 +145,7 @@ arch_chroot "pacman -S --noconfirm \
     python \
     python-pip \
     python-virtualenv \
+    ttf-dejavu \
     sudo \
     wireless_tools \
     wpa_supplicant"

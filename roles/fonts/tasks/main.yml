@@ -5,7 +5,6 @@
   pacman:
     name:
       - cantarell-fonts
-      - ttf-dejavu
       - ttf-liberation
       - noto-fonts
       - noto-fonts-cjk
