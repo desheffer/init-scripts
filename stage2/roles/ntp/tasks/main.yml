@@ -12,5 +12,6 @@
   changed_when: False
 
 - name: Enable systemd-timesyncd
+  become: yes
   shell: "timedatectl set-ntp true"
-  changed_when: "'NTP=no' in timedatectl_before.stdout"
+  when: "'NTP=no' in timedatectl_before.stdout"

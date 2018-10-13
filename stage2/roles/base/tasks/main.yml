@@ -7,6 +7,7 @@
     dest: /etc/pacman.conf
 
 - name: Update pacman
+  become: yes
   pacman:
     update_cache: yes
     upgrade: yes
@@ -19,9 +20,7 @@
     - bash-completion
     - bc
     - fwupd
-    - git
     - htop
-    - jq
     - mlocate
     - reflector
     - rsync
