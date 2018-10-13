@@ -127,13 +127,14 @@ arch_chroot "ln -sf /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/m
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
 arch_chroot "mkdir -p /etc/sudoers.d"
-cat > /mnt/etc/sudoers.d/10-${INSTALL_USER} <<EOL
+cat > /mnt/etc/sudoers.d/10-${INSTALL_USER} <<EOF
 ${INSTALL_USER} ALL=(ALL) ALL
-EOL
+${INSTALL_USER} ALL=(root) NOPASSWD: /usr/bin/pacman
+EOF
 
 # Install base packages:
 
-arch_chroot "pacman -S --needed --noconfirm \
+arch_chroot "pacman -S --noconfirm \
     base-devel \
     bash \
     coreutils \
@@ -148,6 +149,14 @@ arch_chroot "pacman -S --needed --noconfirm \
     wireless_tools \
     wpa_supplicant"
 
+arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    sudo -u ${INSTALL_USER} makepkg -si --noconfirm
+    rm -rf /tmp/yay"
+
+arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
+    plymouth"
+
 # Configure video:
 
 echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > /mnt/etc/modprobe.d/i915.conf
@@ -156,24 +165,24 @@ echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_down
 
 arch_chroot "bootctl --path=/boot install"
 
-cat > /mnt/boot/loader/loader.conf <<EOL
+cat > /mnt/boot/loader/loader.conf <<EOF
 timeout 0
 default arch
 editor 0
-EOL
+EOF
 
-cat > /mnt/boot/loader/entries/arch.conf <<EOL
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /intel-ucode.img
-initrd  /initramfs-linux.img
-options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw quiet
-EOL
+cat > /mnt/boot/loader/entries/arch.conf <<EOF
+title Arch Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm quiet rd.udev.log-priority=3 resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw splash
+EOF
 
 # Configure initramfs:
 
 arch_chroot "sed -i 's/^MODULES=.*/MODULES=(i915 nvme ext4)/' /etc/mkinitcpio.conf"
-arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keymap encrypt lvm2 resume filesystems keyboard fsck)/' /etc/mkinitcpio.conf"
+arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev plymouth autodetect modconf block keymap plymouth-encrypt lvm2 resume filesystems keyboard fsck)/' /etc/mkinitcpio.conf"
 
 arch_chroot "mkinitcpio -p linux"
 
