@@ -156,9 +156,6 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git
     sudo -u ${INSTALL_USER} makepkg -si --noconfirm
     rm -rf /tmp/yay"
 
-arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
-    plymouth"
-
 # Configure video:
 
 echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > /mnt/etc/modprobe.d/i915.conf
@@ -184,7 +181,7 @@ EOF
 # Configure initramfs:
 
 arch_chroot "sed -i 's/^MODULES=.*/MODULES=(i915 nvme ext4)/' /etc/mkinitcpio.conf"
-arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev plymouth autodetect modconf block keymap plymouth-encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
+arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keymap encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
 
 arch_chroot "mkinitcpio -p linux"
 
