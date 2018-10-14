@@ -146,6 +146,7 @@ arch_chroot "pacman -S --noconfirm \
     python \
     python-pip \
     python-virtualenv \
+    terminus-font \
     ttf-dejavu \
     sudo \
     wireless_tools \
@@ -155,6 +156,12 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git
     cd /tmp/yay
     sudo -u ${INSTALL_USER} makepkg -si --noconfirm
     rm -rf /tmp/yay"
+
+# Configure fonts:
+
+cat > /etc/vconsole.conf <<EOF
+FONT=ter-132n
+EOF
 
 # Configure video:
 
@@ -181,7 +188,7 @@ EOF
 # Configure initramfs:
 
 arch_chroot "sed -i 's/^MODULES=.*/MODULES=(i915 nvme ext4)/' /etc/mkinitcpio.conf"
-arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keymap encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
+arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keymap consolefont encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
 
 arch_chroot "mkinitcpio -p linux"
 
