@@ -172,8 +172,9 @@ echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_down
 arch_chroot "bootctl --path=/boot install"
 
 cat > /mnt/boot/loader/loader.conf <<EOF
-timeout 0
 default arch
+timeout 0
+console-mode 0
 editor 0
 EOF
 
