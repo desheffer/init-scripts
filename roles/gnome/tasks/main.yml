@@ -1,12 +1,47 @@
 ---
 
-- name: Install GNOME packages
+- name: Install GNOME base packages
+  become: yes
+  pacman:
+    name:
+      - baobab
+      - cheese
+      - eog
+      - evince
+      - file-roller
+      - gedit
+      - gnome-backgrounds
+      - gnome-calendar
+      - gnome-characters
+      - gnome-color-manager
+      - gnome-control-center
+      - gnome-font-viewer
+      - gnome-keyring
+      - gnome-screenshot
+      - gnome-session
+      - gnome-settings-daemon
+      - gnome-shell
+      - gnome-shell-extensions
+      - gnome-terminal
+      - gvfs-google
+      - gvfs-mtp
+      - gvfs-nfs
+      - gvfs-smb
+      - mousetweaks
+      - mutter
+      - nautilus
+      - networkmanager
+      - sushi
+      - tracker
+      - tracker-miners
+      - xdg-user-dirs-gtk
+
+- name: Install GNOME extra packages
   become: yes
   pacman:
     name:
       - arc-gtk-theme
       - dconf-editor
-      - gnome
       - gnome-tweaks
       - python-psutil
 

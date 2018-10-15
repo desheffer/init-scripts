@@ -8,7 +8,9 @@
       - inkscape
       - libreoffice-fresh
       - libva-intel-driver
+      - qalculate-gtk
       - steam
+      - vlc
 
 - name: Install extra GUI packages
   aur:
