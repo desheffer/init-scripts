@@ -1,0 +1,15 @@
+---
+
+- name: Add user to the wheel group
+  become: yes
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    append: yes
+    groups: wheel
+
+- name: Add user to the input group
+  become: yes
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    append: yes
+    groups: input

@@ -1,5 +1,14 @@
 ---
 
+- name: Install dotfiles packages
+  become: yes
+  pacman:
+    name:
+      - bash-completion
+      - gvim
+      - the_silver_searcher
+      - tmux
+
 - name: Clone dotfiles repository
   git:
     repo: "https://github.com/desheffer/dotfiles.git"

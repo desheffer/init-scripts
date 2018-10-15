@@ -135,7 +135,7 @@ EOF
 
 # Install base packages:
 
-arch_chroot "pacman -S --noconfirm \
+arch_chroot "pacman -S --needed --noconfirm \
     base-devel \
     bash \
     coreutils \

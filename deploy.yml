@@ -2,16 +2,20 @@
 
 - hosts: localhost
   roles:
-    - { role: base, tags: ['base'] }
+    - { role: cli, tags: ['cli'] }
     - { role: dconf, tags: ['dconf'] }
-    - { role: fonts, tags: ['fonts'] }
-    - { role: ntp, tags: ['ntp'] }
-    - { role: ssd, tags: ['ssd'] }
-    - { role: tlp, tags: ['tlp'] }
-    - { role: wallpaper, tags: ['wallpaper'] }
-    - { role: gnome, tags: ['gnome'] }
-    - { role: gdm, tags: ['gdm'] }
-    - { role: extra, tags: ['extra'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
+    - { role: fonts, tags: ['fonts'] }
+    - { role: gdm, tags: ['gdm'] }
+    - { role: gnome, tags: ['gnome'] }
+    - { role: gui, tags: ['gui'] }
     - { role: imwheel, tags: ['imwheel'] }
+    - { role: ntp, tags: ['ntp'] }
+    - { role: pacman, tags: ['pacman'] }
+    - { role: spell, tags: ['spell'] }
+    - { role: ssd, tags: ['ssd'] }
+    - { role: tlp, tags: ['tlp'] }
+    - { role: user, tags: ['user'] }
+    - { role: wallpaper, tags: ['wallpaper'] }
+    - { role: watchdog, tags: ['watchdog'] }

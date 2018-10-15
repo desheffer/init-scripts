@@ -1,0 +1,8 @@
+---
+
+- name: Install spelling libraries
+  become: yes
+  pacman:
+    name:
+      - aspell-en
+      - hunspell-en_US

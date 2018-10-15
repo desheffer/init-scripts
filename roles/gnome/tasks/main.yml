@@ -5,7 +5,9 @@
   pacman:
     name:
       - arc-gtk-theme
+      - dconf-editor
       - gnome
+      - gnome-tweaks
       - python-psutil
 
 - name: Install GNOME AUR packages

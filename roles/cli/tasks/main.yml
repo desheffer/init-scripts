@@ -1,0 +1,15 @@
+---
+
+- name: Install CLI packages
+  become: yes
+  pacman:
+    name:
+      - aws-cli
+      - bc
+      - fwupd
+      - htop
+      - jq
+      - mlocate
+      - reflector
+      - rsync
+      - tree
