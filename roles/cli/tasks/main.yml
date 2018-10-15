@@ -10,6 +10,7 @@
       - htop
       - jq
       - mlocate
+      - netcat
       - reflector
       - rsync
       - tree
