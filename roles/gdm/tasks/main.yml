@@ -1,14 +1,13 @@
 ---
 
 - name: Install GDM
-  become: yes
-  pacman:
-    name: gdm
+  aur:
+    name: gdm-plymouth
 
 - name: Enable GDM
   become: yes
   systemd:
-    name: gdm.service
+    name: gdm-plymouth.service
     enabled: yes
 
 - name: Copy dconf gdm profile

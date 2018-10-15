@@ -157,6 +157,10 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git
     sudo -u ${INSTALL_USER} makepkg -si --noconfirm
     rm -rf /tmp/yay"
 
+arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
+    plymouth \
+    plymouth-theme-arch-charge"
+
 # Configure fonts:
 
 cat > /etc/vconsole.conf <<EOF
@@ -189,7 +193,9 @@ EOF
 # Configure initramfs:
 
 arch_chroot "sed -i 's/^MODULES=.*/MODULES=(i915 nvme ext4)/' /etc/mkinitcpio.conf"
-arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block keymap consolefont encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
+arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev plymouth autodetect modconf block keymap consolefont plymouth-encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
+
+arch_chroot "plymouth-set-default-theme arch-charge"
 
 arch_chroot "mkinitcpio -p linux"
 
