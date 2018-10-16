@@ -12,6 +12,7 @@
     - { role: imwheel, tags: ['imwheel'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: pacman, tags: ['pacman'] }
+    - { role: sound, tags: ['sound'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
     - { role: tlp, tags: ['tlp'] }

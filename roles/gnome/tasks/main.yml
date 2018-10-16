@@ -32,6 +32,7 @@
       - nautilus
       - networkmanager
       - sushi
+      - totem
       - tracker
       - tracker-miners
       - xdg-user-dirs-gtk
