@@ -1,0 +1,22 @@
+---
+
+- name: Install Chromium
+  aur:
+    name: chromium-vaapi-bin
+
+- name: Install libva drivers
+  become: yes
+  pacman:
+    name:
+      - intel-media-driver
+      - libva-intel-driver
+
+- name: Create config directory
+  file:
+    path: ~/.config/
+    state: directory
+
+- name: Copy Chromium command line arguments
+  template:
+    src: chromium-flags.conf
+    dest: ~/.config/chromium-flags.conf

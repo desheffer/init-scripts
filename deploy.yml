@@ -2,6 +2,7 @@
 
 - hosts: localhost
   roles:
+    - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: docker, tags: ['docker'] }
