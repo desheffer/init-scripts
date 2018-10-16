@@ -7,7 +7,6 @@
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
     - { role: fonts, tags: ['fonts'] }
-    - { role: gdm, tags: ['gdm'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }
     - { role: imwheel, tags: ['imwheel'] }

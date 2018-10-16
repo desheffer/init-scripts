@@ -52,6 +52,28 @@
       - gnome-shell-extension-topicons-plus-huttli-git
       - numix-icon-theme-pack-git
 
+- name: Check for libgdm
+  become: yes
+  command: "pacman -Q libgdm"
+  register: libgdm_status
+  changed_when: False
+
+- name: Remove libgdm
+  become: yes
+  command: "pacman -R --noconfirm --assume-installed libgdm libgdm"
+  when: "'libgdm-plymouth' not in libgdm_status.stdout"
+
+- name: Install GDM AUR packages
+  aur:
+    name:
+      - gdm-plymouth
+
+- name: Enable GDM
+  become: yes
+  systemd:
+    name: gdm-plymouth.service
+    enabled: yes
+
 - name: Copy dconf user profile
   become: yes
   template:
@@ -69,6 +91,26 @@
   template:
     src: gnome.conf
     dest: /etc/dconf/db/gnome.d/00-desheffer
+  notify:
+    - Update dconf
+
+- name: Copy dconf gdm profile
+  become: yes
+  template:
+    src: gdm
+    dest: /etc/dconf/profile/gdm
+
+- name: Create GDM configuration directory
+  become: yes
+  file:
+    path: /etc/dconf/db/gdm.d
+    state: directory
+
+- name: Copy GDM configuration
+  become: yes
+  template:
+    src: gdm.conf
+    dest: /etc/dconf/db/gdm.d/00-desheffer
   notify:
     - Update dconf
 
