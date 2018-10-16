@@ -6,6 +6,7 @@
     name:
       - gimp
       - inkscape
+      - intel-media-driver
       - libreoffice-fresh
       - libva-intel-driver
       - qalculate-gtk
@@ -15,6 +16,6 @@
 - name: Install extra GUI packages
   aur:
     name:
-      - google-chrome
+      - chromium-vaapi-bin
       - nordvpn-bin
       - slack-desktop

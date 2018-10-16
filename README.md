@@ -35,3 +35,12 @@ Run **stage 2**:
 
 Due to the idempotent nature of Ansible, you can run the playbook again at any
 time to keep the system up-to-date.
+
+## Miscellaneous
+
+### Chromium
+
+Go to chrome://flags and enable the following:
+
+* Hardware-accelerated video
+* Hardware-accelerated mjpeg decode for captured frame
