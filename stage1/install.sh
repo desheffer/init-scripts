@@ -187,7 +187,15 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm quiet rd.udev.log-priority=3 resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw splash
+options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw quiet splash rd.udev.log-priority=3
+EOF
+
+cat > /mnt/boot/loader/entries/arch-fallback.conf <<EOF
+title Arch Linux (Fallback)
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux-fallback.img
+options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw
 EOF
 
 # Configure initramfs:
