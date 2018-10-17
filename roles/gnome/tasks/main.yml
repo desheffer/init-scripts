@@ -53,21 +53,16 @@
       - gnome-shell-extension-topicons-plus-huttli-git
       - numix-icon-theme-pack-git
 
-- name: Check for libgdm
-  become: yes
-  command: "pacman -Q libgdm"
-  register: libgdm_status
-  changed_when: False
-
 - name: Remove libgdm
   become: yes
-  command: "pacman -R --noconfirm --assume-installed libgdm libgdm"
-  when: "'libgdm-plymouth' not in libgdm_status.stdout"
+  command: "pacman -Rdd --noconfirm libgdm"
+  register: libgdm_result
+  changed_when: "'Packages' in libgdm_result.stdout"
+  failed_when: False
 
-- name: Install GDM AUR packages
+- name: Install GDM
   aur:
-    name:
-      - gdm-plymouth
+    name: gdm-plymouth
 
 - name: Enable GDM
   become: yes
