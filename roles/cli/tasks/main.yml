@@ -6,6 +6,7 @@
     name:
       - aws-cli
       - bc
+      - dnsutils
       - fwupd
       - htop
       - jq
