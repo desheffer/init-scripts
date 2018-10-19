@@ -9,6 +9,7 @@
       - libreoffice-fresh
       - qalculate-gtk
       - steam
+      - transmission-gtk
 
 - name: Install extra GUI packages
   aur:
