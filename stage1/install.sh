@@ -110,7 +110,7 @@ arch_chroot "hwclock --systohc --utc"
 
 # Set the locale:
 
-sed -i "/en_US.UTF-8 UTF-8/s/^#//" /mnt/etc/locale.gen
+sed -i '/^#\?en_US\.UTF-8 UTF-8/s/^#//' /mnt/etc/locale.gen
 arch_chroot "locale-gen"
 
 echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
@@ -118,6 +118,12 @@ echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
 # Set the hostname:
 
 echo "${INSTALL_HOSTNAME}" > /mnt/etc/hostname
+
+# Add host entries:
+
+echo "127.0.0.1 localhost" >> /mnt/etc/hosts
+echo "::1       localhost" >> /mnt/etc/hosts
+echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> /mnt/etc/hosts
 
 # Enable DHCP:
 
