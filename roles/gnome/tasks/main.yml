@@ -50,7 +50,6 @@
   aur:
     name:
       - gnome-shell-extension-dash-to-dock
-      - gnome-shell-extension-system-monitor-git
       - gnome-shell-extension-topicons-plus-huttli-git
       - numix-icon-theme-pack-git
 
