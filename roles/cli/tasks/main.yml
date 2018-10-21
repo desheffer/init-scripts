@@ -5,13 +5,24 @@
   pacman:
     name:
       - aws-cli
+      - bash
       - bc
+      - coreutils
+      - curl
       - dnsutils
       - fwupd
+      - git
       - htop
       - jq
+      - lsof
       - mlocate
+      - net-tools
       - netcat
+      - python
       - reflector
       - rsync
+      - sudo
       - tree
+      - wget
+      - wireless_tools
+      - wpa_supplicant

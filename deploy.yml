@@ -2,6 +2,7 @@
 
 - hosts: localhost
   roles:
+    - { role: pacman, tags: ['pacman'] }
     - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
     - { role: dconf, tags: ['dconf'] }
@@ -12,7 +13,6 @@
     - { role: gui, tags: ['gui'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: ntp, tags: ['ntp'] }
-    - { role: pacman, tags: ['pacman'] }
     - { role: sound, tags: ['sound'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }

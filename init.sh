@@ -13,6 +13,8 @@ if [ -d venv ] && [ "${1}" == "--needed" ]; then
     exit 0
 fi
 
+sudo pacman -S --needed --noconfirm python python-pip python-virtualenv
+
 rm -rf venv
 virtualenv venv
 

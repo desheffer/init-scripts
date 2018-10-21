@@ -26,27 +26,28 @@ fi
 # Collect information:
 
 INSTALL_DISK=
+INSTALL_HOSTNAME=
+INSTALL_USER=
+INSTALL_FULLNAME=
+INSTALL_PASSWORD=
+INSTALL_PASSWORD_CONFIRM=
+
 while [ ! -e "${INSTALL_DISK}" ]; do
     read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " INSTALL_DISK
 done
 
-INSTALL_HOSTNAME=
 while [ -z "${INSTALL_HOSTNAME}" ]; do
     read -p "Hostname: " INSTALL_HOSTNAME
 done
 
-INSTALL_USER=
 while [ -z "${INSTALL_USER}" ]; do
     read -p "Username: " INSTALL_USER
 done
 
-INSTALL_FULLNAME=
 while [ -z "${INSTALL_FULLNAME}" ]; do
     read -p "User fullname: " INSTALL_FULLNAME
 done
 
-INSTALL_PASSWORD=
-INSTALL_PASSWORD_CONFIRM=
 while [ -z "${INSTALL_PASSWORD}" ] || [ "${INSTALL_PASSWORD}" != "${INSTALL_PASSWORD_CONFIRM}" ]; do
     read -s -p "Password: " INSTALL_PASSWORD
     echo
@@ -97,7 +98,14 @@ mount ${BOOTPART} /mnt/boot
 
 # Install the base system:
 
-pacstrap /mnt base
+pacstrap /mnt \
+    base \
+    base-devel \
+    git \
+    intel-ucode \
+    sudo \
+    terminus-font \
+    ttf-dejavu
 
 # Generate the fstab:
 
@@ -139,29 +147,14 @@ ${INSTALL_USER} ALL=(ALL) ALL
 ${INSTALL_USER} ALL=(root) NOPASSWD: /usr/bin/pacman
 EOF
 
-# Install base packages:
-
-arch_chroot "pacman -S --needed --noconfirm \
-    base-devel \
-    bash \
-    coreutils \
-    dialog \
-    git \
-    intel-ucode \
-    net-tools \
-    python \
-    python-pip \
-    python-virtualenv \
-    terminus-font \
-    ttf-dejavu \
-    sudo \
-    wireless_tools \
-    wpa_supplicant"
+# Install yay:
 
 arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git /tmp/yay
     cd /tmp/yay
     sudo -u ${INSTALL_USER} makepkg -si --noconfirm
     rm -rf /tmp/yay"
+
+# Install plymouth:
 
 arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
     plymouth \

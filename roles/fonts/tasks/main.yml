@@ -5,10 +5,12 @@
   pacman:
     name:
       - cantarell-fonts
-      - ttf-liberation
       - noto-fonts
       - noto-fonts-cjk
       - noto-fonts-emoji
+      - terminus-font
+      - ttf-dejavu
+      - ttf-liberation
 
 - name: Install font AUR packages
   aur:
