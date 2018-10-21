@@ -1,0 +1,25 @@
+---
+
+- name: Install xsel
+  become: yes
+  pacman:
+    name: xsel
+
+- name: Create xsel socket
+  become: yes
+  template:
+    src: xsel.socket
+    dest: /usr/lib/systemd/user/xsel.socket
+
+- name: Create xsel service
+  become: yes
+  template:
+    src: xsel@.service
+    dest: /usr/lib/systemd/user/xsel@.service
+
+- name: Start xsel socket
+  systemd:
+    name: xsel.socket
+    scope: user
+    enabled: yes
+    state: started

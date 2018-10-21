@@ -20,3 +20,4 @@
     - { role: user, tags: ['user'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: watchdog, tags: ['watchdog'] }
+    - { role: xsel, tags: ['xsel'] }

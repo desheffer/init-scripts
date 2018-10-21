@@ -13,7 +13,7 @@
   notify:
     - Restart TLP
 
-- name: Enable TLP
+- name: Start TLP
   become: yes
   systemd:
     name: tlp.service

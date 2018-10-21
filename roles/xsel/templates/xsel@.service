@@ -1,0 +1,8 @@
+[Unit]
+Description=Network copy to xsel
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xsel -i -b -n
+StandardInput=socket
+StandardOutput=socket

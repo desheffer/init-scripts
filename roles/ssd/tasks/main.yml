@@ -1,6 +1,6 @@
 ---
 
-- name: Enable TRIM timer
+- name: Start TRIM timer
   become: yes
   systemd:
     name: fstrim.timer
