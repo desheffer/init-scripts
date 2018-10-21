@@ -14,5 +14,4 @@
 - name: Install extra GUI packages
   aur:
     name:
-      - nordvpn-bin
       - slack-desktop
