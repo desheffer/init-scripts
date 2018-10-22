@@ -10,15 +10,12 @@
   template:
     src: tlp.conf
     dest: /etc/default/tlp
-  notify:
-    - Restart TLP
 
-- name: Start TLP
+- name: Enable TLP
   become: yes
   systemd:
     name: tlp.service
     enabled: yes
-    state: started
 
 - name: Enable TLP sleep
   become: yes

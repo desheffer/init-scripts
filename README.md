@@ -18,20 +18,22 @@ needs.
 All of the scripts below are based on the Arch Linux [Installation
 guide](https://wiki.archlinux.org/index.php/Installation_guide).
 
-Connect to wifi:
+Connect to wifi, if necessary:
 
     wifi-menu
 
-Run **stage 1**:
+Start the installation script:
 
     bash -e <(curl -L https://github.com/desheffer/init-scripts/raw/master/stage1/curl.sh)
 
-The system will reboot when the installation is complete. Log in using the
-non-privileged user account.
+The script will prompt for information and run stages 1 and 2. It will reboot
+into the fully installed system once complete.
 
-Run **stage 2**:
+## Keeping a machine in sync
+
+Due to the idempotent nature of Ansible, you can run stage 2 again at any time.
+This can be used to keep the system in sync with changes from this repository.
+
+Run stage 2 using the following command:
 
     ~/init-scripts/deploy.sh
-
-Due to the idempotent nature of Ansible, you can run the playbook again at any
-time to keep the system up-to-date.

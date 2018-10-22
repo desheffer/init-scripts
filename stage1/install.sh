@@ -55,6 +55,8 @@ while [ -z "${INSTALL_PASSWORD}" ] || [ "${INSTALL_PASSWORD}" != "${INSTALL_PASS
     echo
 done
 
+INSTALL_PASSWORD="$(echo ${INSTALL_PASSWORD} | sed "s/'/\\\'/g")"
+
 confirm "Ready to install. Press 'y' to continue..."
 
 # Update the system clock:
@@ -206,14 +208,16 @@ arch_chroot "plymouth-set-default-theme arch-charge"
 
 arch_chroot "mkinitcpio -p linux"
 
-# Clone this repository so it's available after reboot:
-
-arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init-scripts.git /home/${INSTALL_USER}/init-scripts"
-
 # Change passwords:
 
 arch_chroot "echo -e '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd"
 arch_chroot "echo -e '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd ${INSTALL_USER}"
+
+# Deploy stage 2:
+
+arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init-scripts.git /home/${INSTALL_USER}/init-scripts"
+
+arch_chroot "sudo -u ${INSTALL_USER} /home/${INSTALL_USER}/init-scripts/deploy.sh -p '${INSTALL_PASSWORD}'"
 
 # Reboot:
 

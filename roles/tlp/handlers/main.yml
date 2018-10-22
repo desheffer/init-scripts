@@ -1,7 +1,0 @@
----
-
-- name: Restart TLP
-  become: yes
-  systemd:
-    name: tlp.service
-    state: restarted

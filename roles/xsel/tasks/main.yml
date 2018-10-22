@@ -17,9 +17,8 @@
     src: xsel@.service
     dest: /usr/lib/systemd/user/xsel@.service
 
-- name: Start xsel socket
+- name: Enable xsel socket
   systemd:
     name: xsel.socket
     scope: user
     enabled: yes
-    state: started

@@ -113,9 +113,8 @@
     key: /org/gnome/shell/favorite-apps
     state: absent
 
-- name: Start NetworkManager
+- name: Enable NetworkManager
   become: yes
   systemd:
     name: NetworkManager.service
     enabled: yes
-    state: started
