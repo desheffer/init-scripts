@@ -9,16 +9,16 @@
   become: yes
   template:
     src: xsel.socket
-    dest: /usr/lib/systemd/user/xsel.socket
+    dest: /usr/lib/systemd/system/xsel.socket
 
 - name: Create xsel service
   become: yes
   template:
     src: xsel@.service
-    dest: /usr/lib/systemd/user/xsel@.service
+    dest: /usr/lib/systemd/system/xsel@.service
 
 - name: Enable xsel socket
+  become: yes
   systemd:
     name: xsel.socket
-    scope: user
     enabled: yes
