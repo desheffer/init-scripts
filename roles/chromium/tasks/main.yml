@@ -1,15 +1,15 @@
 ---
 
-- name: Install Chromium
-  aur:
-    name: chromium-vaapi-bin
-
 - name: Install libva drivers
   become: yes
   pacman:
     name:
       - intel-media-driver
       - libva-intel-driver
+
+- name: Install Chromium
+  aur:
+    name: chromium-vaapi-bin
 
 - name: Create config directory
   file:
