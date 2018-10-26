@@ -171,7 +171,7 @@ arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
 
 # Configure fonts:
 
-cat > /etc/vconsole.conf <<EOF
+cat > /mnt/etc/vconsole.conf <<EOF
 FONT=ter-132n
 EOF
 
