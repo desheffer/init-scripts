@@ -16,10 +16,17 @@ confirm() {
     done
 }
 
-# Make sure we are running on an install image:
+# Assert we are running on an install image:
 
 if [ "$(hostname)" != archiso ]; then
     echo "${0}: this does not appear to be an install image"
+    exit 1
+fi
+
+# Assert we booted in UEFI mode:
+
+if [ ! -d /sys/firmware/efi/efivars ]; then
+    echo "${0}: system must be booted in UEFI mode"
     exit 1
 fi
 
