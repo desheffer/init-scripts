@@ -5,6 +5,7 @@
   pacman:
     name:
       - gimp
+      - gpick
       - inkscape
       - libreoffice-fresh
       - qalculate-gtk
