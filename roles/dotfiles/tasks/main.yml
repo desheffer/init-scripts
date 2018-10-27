@@ -5,9 +5,9 @@
   pacman:
     name:
       - bash-completion
-      - gvim
       - the_silver_searcher
       - tmux
+      - vim
 
 - name: Clone dotfiles repository
   git:
