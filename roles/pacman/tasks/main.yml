@@ -19,15 +19,24 @@
     path: /etc/pacman.d/hooks
     state: directory
 
-- name: Install pacman hook to update systemd-boot
-  aur:
-    name: systemd-boot-pacman-hook
+- name: Install reflector
+  become: yes
+  pacman:
+    name: reflector
 
-- name: Copy pacman hook to update mirror list
+- name: Copy pacman hook to update mirrorlist
   become: yes
   template:
     src: mirrorlist.hook
     dest: /etc/pacman.d/hooks/mirrorlist.hook
+
+- name: Force pacman mirrorlist update
+  become: yes
+  command: "pacman -S --noconfirm pacman-mirrorlist"
+
+- name: Install pacman hook to update systemd-boot
+  aur:
+    name: systemd-boot-pacman-hook
 
 - name: Install pacman-contrib
   become: yes

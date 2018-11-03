@@ -4,7 +4,7 @@ Type = Package
 Target = pacman-mirrorlist
 
 [Action]
-Description = Updating mirror list...
+Description = Updating mirrorlist...
 When = PostTransaction
 Depends = reflector
-Exec = /bin/sh -c "/usr/bin/reflector --country US --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"
+Exec = /bin/sh -c "/usr/bin/reflector --country US --protocol https --latest 50 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"

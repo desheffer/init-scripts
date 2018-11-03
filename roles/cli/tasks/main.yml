@@ -19,7 +19,6 @@
       - net-tools
       - netcat
       - python
-      - reflector
       - rsync
       - sudo
       - tree
