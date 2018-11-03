@@ -11,13 +11,13 @@
     src: tlp.conf
     dest: /etc/default/tlp
 
-- name: Enable TLP
+- name: Enable TLP service
   become: yes
   systemd:
     name: tlp.service
     enabled: yes
 
-- name: Enable TLP sleep
+- name: Enable TLP sleep service
   become: yes
   systemd:
     name: tlp-sleep.service

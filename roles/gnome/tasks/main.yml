@@ -60,12 +60,6 @@
   aur:
     name: gdm-plymouth
 
-- name: Enable GDM
-  become: yes
-  systemd:
-    name: gdm-plymouth.service
-    enabled: yes
-
 - name: Copy dconf user profile
   become: yes
   template:
@@ -111,7 +105,19 @@
     key: /org/gnome/shell/favorite-apps
     state: absent
 
-- name: Enable NetworkManager
+- name: Mask GDM (non-plymouth) service
+  become: yes
+  systemd:
+    name: gdm.service
+    masked: yes
+
+- name: Enable GDM service
+  become: yes
+  systemd:
+    name: gdm-plymouth.service
+    enabled: yes
+
+- name: Enable NetworkManager service
   become: yes
   systemd:
     name: NetworkManager.service

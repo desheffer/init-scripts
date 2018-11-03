@@ -6,7 +6,7 @@
     src: timesyncd.conf
     dest: /etc/systemd/timesyncd.conf
 
-- name: Enable systemd-timesyncd
+- name: Enable systemd-timesyncd service
   become: yes
   systemd:
     name: systemd-timesyncd.service
