@@ -24,7 +24,8 @@ Connect to wifi, if necessary:
 
 Start the installation script:
 
-    bash <(wget -O- https://www.dougsheffer.com/init-scripts/curl.sh)
+    curl -LO dougsheffer.com/init-scripts/stage1.sh
+    bash stage1.sh
 
 The script will prompt for information and run stages 1 and 2. It will reboot
 into the fully installed system once complete.

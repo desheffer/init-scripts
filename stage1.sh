@@ -30,6 +30,10 @@ if [ ! -d /sys/firmware/efi/efivars ]; then
     exit 1
 fi
 
+# Expand the temporary filesystem.
+
+mount -o remount,size=2G /run/archiso/cowspace
+
 # Collect information:
 
 INSTALL_DISK=
