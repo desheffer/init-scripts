@@ -24,7 +24,7 @@
   pacman:
     name: reflector
 
-- name: Copy pacman hook to update mirrorlist
+- name: Copy pacman mirrorlist hook
   become: yes
   template:
     src: mirrorlist.hook
@@ -34,9 +34,11 @@
   become: yes
   command: "pacman -S --noconfirm pacman-mirrorlist"
 
-- name: Install pacman hook to update systemd-boot
-  aur:
-    name: systemd-boot-pacman-hook
+- name: Copy pacman systemd-boot hook
+  become: yes
+  template:
+    src: systemd-boot.hook
+    dest: /etc/pacman.d/hooks/systemd-boot.hook
 
 - name: Install pacman-contrib
   become: yes
