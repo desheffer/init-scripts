@@ -162,10 +162,10 @@ EOF
 
 # Install yay:
 
-arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay
+arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+    cd /tmp/yay-bin
     sudo -u ${INSTALL_USER} makepkg -si --noconfirm
-    rm -rf /tmp/yay"
+    rm -rf /tmp/yay-bin"
 
 # Install plymouth:
 
