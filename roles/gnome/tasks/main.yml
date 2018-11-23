@@ -27,6 +27,7 @@
       - mutter
       - nautilus
       - networkmanager
+      - seahorse
       - sushi
       - totem
       - xdg-user-dirs-gtk
