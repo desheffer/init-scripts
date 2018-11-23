@@ -14,5 +14,6 @@
     repo: "https://github.com/desheffer/dotfiles.git"
     dest: ~/dotfiles
     accept_hostkey: yes
+    update: no
   notify:
     - Install dotfiles
