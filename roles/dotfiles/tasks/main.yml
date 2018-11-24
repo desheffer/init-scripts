@@ -9,6 +9,17 @@
       - tmux
       - vim
 
+- name: Remove vi
+  become: yes
+  command: "pacman -R --noconfirm vi"
+  register: vi_result
+  changed_when: "'Packages' in vi_result.stdout"
+  failed_when: False
+
+- name: Install vi-vim-symlink
+  aur:
+    name: vi-vim-symlink
+
 - name: Clone dotfiles repository
   git:
     repo: "https://github.com/desheffer/dotfiles.git"
