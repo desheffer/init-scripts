@@ -21,8 +21,8 @@ if [ ! -d venv ]; then
     pip install -r requirements.txt
 fi
 
-BECOME=("--ask-become-pass")
-TAG=()
+become=("--ask-become-pass")
+tag=()
 
 function show_help {
     echo "Usage: ${0} [OPTION]..."
@@ -39,10 +39,10 @@ while getopts ":hp:t:" opt; do
             show_help
             ;;
         p)
-            BECOME=("--extra-vars" "ansible_become_pass=${OPTARG}")
+            become=("--extra-vars" "ansible_become_pass=${OPTARG}")
             ;;
         t)
-            TAG=("-t" "${OPTARG}")
+            tag=("-t" "${OPTARG}")
             ;;
         \?)
             echo "${0}: invalid option -- '${OPTARG}'" 1>&2
@@ -63,4 +63,4 @@ if [ ! -z ${1+x} ]; then
 fi
 
 source venv/bin/activate
-ansible-playbook ${BECOME[@]} ${TAG[@]} deploy.yml
+ansible-playbook ${become[@]} ${tag[@]} deploy.yml
