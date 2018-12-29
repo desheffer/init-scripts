@@ -13,6 +13,7 @@
     - { role: gui, tags: ['gui'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: ntp, tags: ['ntp'] }
+    - { role: qemu, tags: ['qemu'] }
     - { role: sound, tags: ['sound'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
