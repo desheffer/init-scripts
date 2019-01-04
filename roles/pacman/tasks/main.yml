@@ -44,3 +44,10 @@
   become: yes
   pacman:
     name: pacman-contrib
+
+- name: Compile with all cores
+  become: yes
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: "^#?MAKEFLAGS=.*$"
+    line: "MAKEFLAGS=\"-j$(nproc)\""
