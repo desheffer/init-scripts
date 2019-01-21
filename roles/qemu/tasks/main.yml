@@ -1,7 +1,9 @@
 ---
 
-- name: Install QEMU AUR packages
+- name: Install QEMU AUR package
   aur:
-    name:
-      - binfmt-qemu-static
-      - qemu-user-static
+    name: qemu-user-static-bin
+
+- name: Install binfmt AUR package
+  aur:
+    name: binfmt-qemu-static
