@@ -8,8 +8,9 @@
       - libva-intel-driver
 
 - name: Install Chromium
-  aur:
-    name: chromium-vaapi-bin
+  become: yes
+  pacman:
+    name: chromium
 
 - name: Create config directory
   file:
