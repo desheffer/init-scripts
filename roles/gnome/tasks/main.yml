@@ -25,7 +25,6 @@
       - mousetweaks
       - mutter
       - nautilus
-      - networkmanager
       - seahorse
       - sushi
       - totem
@@ -113,10 +112,4 @@
   become: yes
   systemd:
     name: gdm-plymouth.service
-    enabled: yes
-
-- name: Enable NetworkManager service
-  become: yes
-  systemd:
-    name: NetworkManager.service
     enabled: yes

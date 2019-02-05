@@ -1,0 +1,24 @@
+---
+
+- name: Install NetworkManager
+  become: yes
+  pacman:
+    name: networkmanager
+
+- name: Copy NetworkManager configuration
+  become: yes
+  template:
+    src: NetworkManager.conf
+    dest: /etc/NetworkManager/NetworkManager.conf
+
+- name: Enable NetworkManager service
+  become: yes
+  systemd:
+    name: NetworkManager.service
+    enabled: yes
+
+- name: Copy resolv.conf
+  become: yes
+  template:
+    src: resolv.conf
+    dest: /etc/resolv.conf
