@@ -10,7 +10,7 @@
 - name: Install Chromium
   become: yes
   pacman:
-    name: chromium-vaapi
+    name: chromium
 
 - name: Create config directory
   file:
