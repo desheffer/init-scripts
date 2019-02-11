@@ -14,11 +14,11 @@
     - { role: gui, tags: ['gui'] }
     - { role: imwheel, tags: ['imwheel'] }
     - { role: ntp, tags: ['ntp'] }
+    - { role: power, tags: ['power'] }
     - { role: qemu, tags: ['qemu'] }
     - { role: sound, tags: ['sound'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
-    - { role: tlp, tags: ['tlp'] }
     - { role: user, tags: ['user'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: watchdog, tags: ['watchdog'] }

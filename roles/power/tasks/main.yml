@@ -34,3 +34,14 @@
   systemd:
     name: systemd-rfkill.socket
     masked: yes
+
+- name: Install PowerTOP
+  become: yes
+  pacman:
+    name: powertop
+
+- name: Create PowerTOP service
+  become: yes
+  template:
+    src: powertop.service
+    dest: /etc/systemd/system/powertop.service
