@@ -1,5 +1,12 @@
 ---
 
+- name: Install Yubikey tools
+  become: true
+  pacman:
+    name:
+      - yubikey-manager
+      - yubikey-personalization
+
 - name: Install Yubico U2F library
   aur:
     name: libu2f-host
