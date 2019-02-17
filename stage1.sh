@@ -4,11 +4,12 @@ set -euo pipefail
 
 cd "$(dirname "${0}")"
 
-arch_chroot() {
-    arch-chroot /mnt /bin/bash -c "${1}"
+MNT="/mnt"
+function arch_chroot {
+    arch-chroot ${MNT} /bin/bash -c "${1}"
 }
 
-confirm() {
+function confirm {
     CONFIRM=
     while [ "${CONFIRM}" != "y" ]; do
         read -n 1 -r -s -p "${1}" CONFIRM
@@ -18,7 +19,7 @@ confirm() {
 
 # Assert we are running on an install image:
 
-if [ "$(hostname)" != archiso ]; then
+if [ "$(hostname)" != "archiso" ]; then
     echo "${0}: this does not appear to be an install image"
     exit 1
 fi
@@ -44,6 +45,7 @@ INSTALL_PASSWORD=
 INSTALL_PASSWORD_CONFIRM=
 
 while [ ! -e "${INSTALL_DISK}" ]; do
+    lsblk -p
     read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " INSTALL_DISK
 done
 
@@ -103,15 +105,15 @@ lvdisplay
 mkfs.ext4 /dev/mapper/vg0-root
 mkswap /dev/mapper/vg0-swap
 
-mount /dev/mapper/vg0-root /mnt
+mount /dev/mapper/vg0-root ${MNT}
 swapon /dev/mapper/vg0-swap
 
-mkdir /mnt/boot
-mount ${BOOTPART} /mnt/boot
+mkdir ${MNT}/boot
+mount ${BOOTPART} ${MNT}/boot
 
 # Install the base system:
 
-pacstrap /mnt \
+pacstrap ${MNT} \
     base \
     base-devel \
     git \
@@ -122,7 +124,7 @@ pacstrap /mnt \
 
 # Generate the fstab:
 
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U ${MNT} >> ${MNT}/etc/fstab
 
 # Set the time zone:
 
@@ -131,20 +133,20 @@ arch_chroot "hwclock --systohc --utc"
 
 # Set the locale:
 
-sed -i '/^#\?en_US\.UTF-8 UTF-8/s/^#//' /mnt/etc/locale.gen
+sed -i '/^#\?en_US\.UTF-8 UTF-8/s/^#//' ${MNT}/etc/locale.gen
 arch_chroot "locale-gen"
 
-echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
+echo "LANG=en_US.UTF-8" >> ${MNT}/etc/locale.conf
 
 # Set the hostname:
 
-echo "${INSTALL_HOSTNAME}" > /mnt/etc/hostname
+echo "${INSTALL_HOSTNAME}" > ${MNT}/etc/hostname
 
 # Add host entries:
 
-echo "127.0.0.1 localhost" >> /mnt/etc/hosts
-echo "::1       localhost" >> /mnt/etc/hosts
-echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> /mnt/etc/hosts
+echo "127.0.0.1 localhost" >> ${MNT}/etc/hosts
+echo "::1       localhost" >> ${MNT}/etc/hosts
+echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> ${MNT}/etc/hosts
 
 # Enable DHCP:
 
@@ -155,7 +157,7 @@ arch_chroot "ln -sf /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/m
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
 arch_chroot "mkdir -p /etc/sudoers.d"
-cat > /mnt/etc/sudoers.d/10-${INSTALL_USER} <<EOF
+cat > ${MNT}/etc/sudoers.d/10-${INSTALL_USER} <<EOF
 ${INSTALL_USER} ALL=(ALL) ALL
 ${INSTALL_USER} ALL=(root) NOPASSWD: /usr/bin/pacman
 EOF
@@ -175,26 +177,26 @@ arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
 
 # Configure fonts:
 
-cat > /mnt/etc/vconsole.conf <<EOF
+cat > ${MNT}/etc/vconsole.conf <<EOF
 FONT=ter-132n
 EOF
 
 # Configure video:
 
-echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > /mnt/etc/modprobe.d/i915.conf
+echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > ${MNT}/etc/modprobe.d/i915.conf
 
 # Install bootloader:
 
 arch_chroot "bootctl --path=/boot install"
 
-cat > /mnt/boot/loader/loader.conf <<EOF
+cat > ${MNT}/boot/loader/loader.conf <<EOF
 default arch
 timeout 0
 console-mode 0
 editor 0
 EOF
 
-cat > /mnt/boot/loader/entries/arch.conf <<EOF
+cat > ${MNT}/boot/loader/entries/arch.conf <<EOF
 title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
@@ -202,7 +204,7 @@ initrd /initramfs-linux.img
 options cryptdevice=UUID=$(blkid -t TYPE=crypto_LUKS -s UUID -o value):lvm resume=/dev/mapper/vg0-swap root=/dev/mapper/vg0-root rw quiet splash rd.udev.log-priority=3
 EOF
 
-cat > /mnt/boot/loader/entries/arch-fallback.conf <<EOF
+cat > ${MNT}/boot/loader/entries/arch-fallback.conf <<EOF
 title Arch Linux (Fallback)
 linux /vmlinuz-linux
 initrd /intel-ucode.img
@@ -234,5 +236,5 @@ arch_chroot "sudo -u ${INSTALL_USER} /home/${INSTALL_USER}/init-scripts/deploy.s
 
 confirm "Setup complete. Press 'y' to reboot..."
 
-umount -R /mnt
+umount -R ${MNT}
 reboot

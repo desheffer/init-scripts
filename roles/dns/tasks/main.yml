@@ -22,3 +22,4 @@
   template:
     src: resolv.conf
     dest: /etc/resolv.conf
+    unsafe_writes: yes
