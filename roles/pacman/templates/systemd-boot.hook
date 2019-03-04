@@ -1,6 +1,8 @@
+# {{ ansible_managed }}
+
 [Trigger]
-Type = Package
 Operation = Upgrade
+Type = Package
 Target = systemd
 
 [Action]

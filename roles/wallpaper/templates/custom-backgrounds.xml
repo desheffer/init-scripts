@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<!-- {{ ansible_managed }} -->
 <wallpapers>
   <wallpaper deleted="false">
     <name>Small Memory</name>
