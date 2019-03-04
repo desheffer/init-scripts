@@ -42,7 +42,7 @@
 - name: Install GNOME AUR packages
   aur:
     name:
-      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-dash-to-panel
       - gnome-shell-extension-topicons-plus-huttli-git
       - numix-icon-theme-pack-git
 
