@@ -1,12 +1,5 @@
 ---
 
-- name: Install libva drivers
-  become: yes
-  pacman:
-    name:
-      - intel-media-driver
-      - libva-intel-driver
-
 - name: Install Chromium
   become: yes
   pacman:
@@ -21,3 +14,19 @@
   template:
     src: chromium-flags.conf
     dest: ~/.config/chromium-flags.conf
+
+- name: Install libva drivers
+  become: yes
+  pacman:
+    name:
+      - intel-media-driver
+      - libva-intel-driver
+
+- name: Install Flash support
+  become: yes
+  pacman:
+    name: pepper-flash
+
+- name: Install Widevine support
+  aur:
+    name: chromium-widevine
