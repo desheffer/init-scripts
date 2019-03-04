@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+[User]
+Language=
+Session=
+XSession=gnome-xorg
+Icon=/usr/share/pixmaps/faces/headphones.jpg
+SystemAccount=false

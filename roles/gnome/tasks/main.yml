@@ -101,6 +101,12 @@
     key: /org/gnome/shell/favorite-apps
     state: absent
 
+- name: Copy AccountServices configuration
+  become: yes
+  template:
+    src: account
+    dest: /var/lib/AccountsService/users/{{ ansible_user_id }}
+
 - name: Mask GDM (non-plymouth) service
   become: yes
   systemd:
