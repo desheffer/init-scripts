@@ -10,7 +10,10 @@
       - noto-fonts-emoji
       - terminus-font
       - ttf-dejavu
+      - ttf-droid
       - ttf-liberation
+      - ttf-roboto
+      - ttf-ubuntu-font-family
 
 - name: Install font AUR packages
   aur:
