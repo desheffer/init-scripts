@@ -45,17 +45,6 @@
       - gnome-shell-extension-dash-to-panel
       - numix-icon-theme-pack-git
 
-- name: Remove libgdm
-  become: yes
-  command: "pacman -Rdd --noconfirm libgdm"
-  register: libgdm_result
-  changed_when: "'Packages' in libgdm_result.stdout"
-  failed_when: False
-
-- name: Install GDM
-  aur:
-    name: gdm-plymouth
-
 - name: Copy dconf user profile
   become: yes
   template:
@@ -106,6 +95,13 @@
   template:
     src: account
     dest: /var/lib/AccountsService/users/{{ ansible_user_id }}
+    force: no
+
+- name: Disable GDM (non-plymouth) service
+  become: yes
+  systemd:
+    name: gdm.service
+    enabled: no
 
 - name: Mask GDM (non-plymouth) service
   become: yes
@@ -113,7 +109,7 @@
     name: gdm.service
     masked: yes
 
-- name: Enable GDM service
+- name: Enable GDM (plymouth) service
   become: yes
   systemd:
     name: gdm-plymouth.service
