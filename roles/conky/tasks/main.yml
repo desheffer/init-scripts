@@ -1,0 +1,11 @@
+---
+
+- name: Install Conky
+  become: yes
+  pacman:
+    name: conky
+
+- name: Add Conky as a startup application
+  template:
+    src: conky.desktop
+    dest: ~/.config/autostart/conky.desktop
