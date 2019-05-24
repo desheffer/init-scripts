@@ -5,7 +5,6 @@
     - { role: pacman, tags: ['pacman'] }
     - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
-    - { role: conky, tags: ['conky'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: dns, tags: ['dns'] }
     - { role: docker, tags: ['docker'] }
