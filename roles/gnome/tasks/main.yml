@@ -97,20 +97,8 @@
     dest: /var/lib/AccountsService/users/{{ ansible_user_id }}
     force: no
 
-- name: Disable GDM (non-plymouth) service
+- name: Enable GDM service
   become: yes
   systemd:
     name: gdm.service
-    enabled: no
-
-- name: Mask GDM (non-plymouth) service
-  become: yes
-  systemd:
-    name: gdm.service
-    masked: yes
-
-- name: Enable GDM (plymouth) service
-  become: yes
-  systemd:
-    name: gdm-plymouth.service
     enabled: yes
