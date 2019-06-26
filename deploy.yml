@@ -3,12 +3,12 @@
 - hosts: localhost
   roles:
     - { role: pacman, tags: ['pacman'] }
-    - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: dns, tags: ['dns'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
+    - { role: firefox, tags: ['firefox'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }
