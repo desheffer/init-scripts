@@ -45,4 +45,4 @@
   template:
     src: powertop.service
     dest: /etc/systemd/system/powertop.service
-    mode: 0755
+    mode: 0644
