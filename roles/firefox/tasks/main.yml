@@ -45,6 +45,11 @@
     value: Personal
     no_extra_spaces: yes
 
+- name: Copy Personal user.js file
+  template:
+    src: user.js
+    dest: ~/.mozilla/firefox/Personal/user.js
+
 - name: Create Work profile directory
   file:
     path: ~/.mozilla/firefox/Work
@@ -73,6 +78,11 @@
     option: Path
     value: Work
     no_extra_spaces: yes
+
+- name: Copy Work user.js file
+  template:
+    src: user.js
+    dest: ~/.mozilla/firefox/Work/user.js
 
 - name: Do not start with last profile
   ini_file:
