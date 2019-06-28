@@ -4,7 +4,6 @@
   become: yes
   pacman:
     name:
-      - conky
       - gimp
       - gpick
       - inkscape

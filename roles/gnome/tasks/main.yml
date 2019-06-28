@@ -43,6 +43,7 @@
   aur:
     name:
       - gnome-shell-extension-dash-to-panel-git
+      - gnome-shell-extension-openweather-git
       - numix-icon-theme-pack-git
 
 - name: Copy dconf user profile
