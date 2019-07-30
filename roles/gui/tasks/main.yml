@@ -15,4 +15,5 @@
 - name: Install extra GUI packages
   aur:
     name:
+      - gpmdp
       - slack-desktop
