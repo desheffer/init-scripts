@@ -1,0 +1,12 @@
+---
+
+- name: Install NordVPN
+  aur:
+    name:
+      - nordvpn-bin
+
+- name: Enable NordVPN service
+  become: yes
+  systemd:
+    name: nordvpnd.service
+    enabled: yes

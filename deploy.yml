@@ -12,6 +12,7 @@
     - { role: fonts, tags: ['fonts'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }
+    - { role: nordvpn, tags: ['nordvpn'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: power, tags: ['power'] }
     - { role: qemu, tags: ['qemu'] }
