@@ -39,10 +39,3 @@
   become: yes
   pacman:
     name: powertop
-
-- name: Create PowerTOP service
-  become: yes
-  template:
-    src: powertop.service
-    dest: /etc/systemd/system/powertop.service
-    mode: 0644
