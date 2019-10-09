@@ -45,9 +45,27 @@
   pacman:
     name: pacman-contrib
 
+- name: Enable paccache timer
+  become: yes
+  systemd:
+    name: paccache.timer
+    enabled: yes
+
 - name: Compile with all cores
   become: yes
   lineinfile:
     path: /etc/makepkg.conf
     regexp: "^#?MAKEFLAGS=.*$"
     line: "MAKEFLAGS=\"-j$(nproc)\""
+
+- name: Compress packages with all cores
+  become: yes
+  lineinfile:
+      dest: /etc/makepkg.conf
+      regexp: "^COMPRESSXZ"
+      line: "COMPRESSXZ=(xz -c -z - --threads=0)"
+
+- name: Copy yay configuration
+  template:
+    src: yay.json
+    dest: ~/.config/yay/config.json
