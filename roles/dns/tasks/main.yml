@@ -17,3 +17,9 @@
     src: resolvconf.conf
     dest: /etc/resolvconf.conf
     unsafe_writes: yes
+
+- name: Copy rc-manager.conf
+  become: yes
+  template:
+    src: rc-manager.conf
+    dest: /etc/NetworkManager/conf.d/rc-manager.conf
