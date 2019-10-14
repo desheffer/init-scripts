@@ -148,10 +148,6 @@ echo "127.0.0.1 localhost" >> ${MNT}/etc/hosts
 echo "::1       localhost" >> ${MNT}/etc/hosts
 echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> ${MNT}/etc/hosts
 
-# Enable DHCP:
-
-arch_chroot "ln -sf /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/multi-user.target.wants/dhcpcd.service"
-
 # Create user:
 
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
