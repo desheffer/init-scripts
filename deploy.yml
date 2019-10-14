@@ -3,6 +3,8 @@
 - hosts: localhost
   roles:
     - { role: pacman, tags: ['pacman'] }
+
+    - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: dns, tags: ['dns'] }
