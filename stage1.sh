@@ -169,7 +169,7 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay-bin
 
 arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
     plymouth \
-    plymouth-theme-arch-charge"
+    plymouth-theme-arch-charge-big"
 
 # Configure fonts:
 
@@ -213,7 +213,7 @@ EOF
 arch_chroot "sed -i 's/^MODULES=.*/MODULES=(i915 nvme ext4)/' /etc/mkinitcpio.conf"
 arch_chroot "sed -i 's/^HOOKS=.*/HOOKS=(base udev plymouth autodetect modconf block keymap consolefont plymouth-encrypt lvm2 resume filesystems keyboard fsck shutdown)/' /etc/mkinitcpio.conf"
 
-arch_chroot "plymouth-set-default-theme arch-charge"
+arch_chroot "plymouth-set-default-theme arch-charge-big"
 
 arch_chroot "mkinitcpio -p linux"
 
