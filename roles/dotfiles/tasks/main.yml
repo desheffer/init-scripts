@@ -28,3 +28,10 @@
     update: no
   notify:
     - Install dotfiles
+
+- name: Do not load defaults if ~/.vimrc is missing
+  become: yes
+  lineinfile:
+    path: /etc/vimrc
+    regexp: "^\"?let skip_defaults_vim=.*$"
+    line: "let skip_defaults_vim=1"
