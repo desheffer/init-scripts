@@ -21,6 +21,7 @@
       - netcat
       - python
       - rsync
+      - sshpass
       - sudo
       - tree
       - wget
