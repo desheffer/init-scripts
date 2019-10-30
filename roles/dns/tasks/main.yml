@@ -1,25 +1,33 @@
 ---
 
-- name: Install NetworkManager
+- name: Install dnscrypt-proxy
   become: yes
   pacman:
-    name: networkmanager
+    name: dnscrypt-proxy
 
-- name: Enable NetworkManager service
+- name: Use Cloudflare for DNS
+  become: yes
+  lineinfile:
+    path: /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+    regexp: "^#? ?server_names = .*$"
+    line: "server_names = ['cloudflare', 'cloudflare-ipv6']"
+
+- name: Enable dnscrypt-proxy service
   become: yes
   systemd:
-    name: NetworkManager.service
+    name: dnscrypt-proxy.service
     enabled: yes
 
-- name: Copy resolvconf.conf
+- name: Copy resolv.conf
   become: yes
   template:
-    src: resolvconf.conf
-    dest: /etc/resolvconf.conf
-    unsafe_writes: yes
+    src: resolv.conf
+    dest: /etc/dnscrypt-proxy/resolv.conf
 
-- name: Copy rc-manager.conf
+- name: Link resolv.conf
   become: yes
-  template:
-    src: rc-manager.conf
-    dest: /etc/NetworkManager/conf.d/rc-manager.conf
+  file:
+    src: /etc/dnscrypt-proxy/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: yes

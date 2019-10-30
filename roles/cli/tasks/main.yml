@@ -19,6 +19,7 @@
       - mlocate
       - net-tools
       - netcat
+      - networkmanager
       - python
       - rsync
       - sshpass
@@ -27,3 +28,9 @@
       - wget
       - wireless_tools
       - wpa_supplicant
+
+- name: Enable NetworkManager service
+  become: yes
+  systemd:
+    name: NetworkManager.service
+    enabled: yes
