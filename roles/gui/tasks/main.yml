@@ -11,6 +11,7 @@
       - qalculate-gtk
       - steam
       - transmission-gtk
+      - vlc
       - xsel
 
 - name: Install extra GUI packages

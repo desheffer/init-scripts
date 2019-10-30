@@ -27,7 +27,6 @@
       - nautilus
       - seahorse
       - sushi
-      - totem
       - xdg-user-dirs-gtk
 
 - name: Install GNOME extra packages
