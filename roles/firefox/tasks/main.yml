@@ -89,7 +89,7 @@
     path: ~/.mozilla/firefox/profiles.ini
     section: General
     option: StartWithLastProfile
-    value: 0
+    value: "0"
     no_extra_spaces: yes
 
 - name: Copy firefox.desktop
