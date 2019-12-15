@@ -4,3 +4,10 @@
   become: yes
   pacman:
     name: alsa-utils
+
+- name: Copy audio switcher
+  become: yes
+  template:
+    src: pacswitch
+    dest: /usr/local/bin/pacswitch
+    mode: 0755
