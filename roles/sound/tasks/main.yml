@@ -8,6 +8,6 @@
 - name: Copy audio switcher
   become: yes
   template:
-    src: pacswitch
-    dest: /usr/local/bin/pacswitch
+    src: paswitch
+    dest: /usr/local/bin/paswitch
     mode: 0755
