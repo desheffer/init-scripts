@@ -1,33 +1,15 @@
 ---
 
-- name: Install dnscrypt-proxy
-  become: yes
-  pacman:
-    name: dnscrypt-proxy
-
-- name: Use Cloudflare for DNS
-  become: yes
-  lineinfile:
-    path: /etc/dnscrypt-proxy/dnscrypt-proxy.toml
-    regexp: "^#? ?server_names = .*$"
-    line: "server_names = ['cloudflare', 'cloudflare-ipv6']"
-
-- name: Enable dnscrypt-proxy service
-  become: yes
-  systemd:
-    name: dnscrypt-proxy.service
-    enabled: yes
-
 - name: Copy resolv.conf
   become: yes
   template:
     src: resolv.conf
-    dest: /etc/dnscrypt-proxy/resolv.conf
+    dest: /etc/resolv.static.conf
 
 - name: Link resolv.conf
   become: yes
   file:
-    src: /etc/dnscrypt-proxy/resolv.conf
+    src: /etc/resolv.static.conf
     dest: /etc/resolv.conf
     state: link
     force: yes
