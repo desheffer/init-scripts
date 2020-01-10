@@ -4,17 +4,21 @@
   become: yes
   pacman:
     name:
+      - apex-bin
       - aws-cli
-      - bash
       - bc
       - coreutils
       - curl
+      - entr
+      - file
       - fwupd
       - git
       - htop
       - jq
       - lastpass-cli
       - lsof
+      - man-db
+      - man-pages
       - mlocate
       - netcat
       - python

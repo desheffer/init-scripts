@@ -6,8 +6,9 @@
     name:
       - bind-tools
       - net-tools
-      - netctl
       - networkmanager
+      - nmap
+      - speedtest-cli
       - wireless_tools
       - wpa_supplicant
 

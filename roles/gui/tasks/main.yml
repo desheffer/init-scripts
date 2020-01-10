@@ -13,6 +13,7 @@
       - transmission-gtk
       - vlc
       - xsel
+      - zoom
 
 - name: Install extra GUI packages
   aur:
