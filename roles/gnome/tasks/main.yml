@@ -42,6 +42,7 @@
     name:
       - gnome-shell-extension-dash-to-panel-git
       - gnome-shell-extension-openweather-git
+      - gnome-shell-extension-sound-output-device-chooser-git
       - tela-icon-theme-git
 
 - name: Copy dconf user profile
