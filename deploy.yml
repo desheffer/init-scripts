@@ -17,7 +17,6 @@
     - { role: nordvpn, tags: ['nordvpn'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: power, tags: ['power'] }
-    - { role: sound, tags: ['sound'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
     - { role: user, tags: ['user'] }
