@@ -118,9 +118,7 @@ pacstrap ${MNT} \
     base-devel \
     git \
     intel-ucode \
-    sudo \
-    terminus-font \
-    ttf-dejavu
+    sudo
 
 # Generate the fstab:
 
@@ -170,12 +168,6 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay-bin
 arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
     plymouth \
     plymouth-theme-arch-charge-big"
-
-# Configure fonts:
-
-cat > ${MNT}/etc/vconsole.conf <<EOF
-FONT=ter-132n
-EOF
 
 # Configure video:
 

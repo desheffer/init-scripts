@@ -21,6 +21,12 @@
       - nerd-fonts-dejavu-complete
       - ttf-ms-fonts
 
+- name: Apply vconsole font configuration
+  become: yes
+  template:
+    src: vconsole.conf
+    dest: /etc/vconsole.conf
+
 - name: Apply local font configuration
   become: yes
   template:
