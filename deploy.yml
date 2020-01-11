@@ -14,7 +14,8 @@
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }
     - { role: network, tags: ['network'] }
-    - { role: nordvpn, tags: ['nordvpn'] }
+    # NordVPN breaks iptables
+    # - { role: nordvpn, tags: ['nordvpn'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: power, tags: ['power'] }
     - { role: spell, tags: ['spell'] }
