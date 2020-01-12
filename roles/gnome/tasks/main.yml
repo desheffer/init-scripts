@@ -22,7 +22,6 @@
       - gvfs-google
       - gvfs-mtp
       - gvfs-smb
-      - mutter
       - nemo
       - seahorse
       - sushi
