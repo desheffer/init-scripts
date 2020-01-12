@@ -8,6 +8,7 @@
       - eog
       - evince
       - file-roller
+      - gdm
       - gedit
       - gnome-backgrounds
       - gnome-color-manager

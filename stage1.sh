@@ -17,13 +17,6 @@ function confirm {
     done
 }
 
-# Assert we are running on an install image:
-
-if [ "$(hostname)" != "archiso" ]; then
-    echo "${0}: this does not appear to be an install image"
-    exit 1
-fi
-
 # Assert we booted in UEFI mode:
 
 if [ ! -d /sys/firmware/efi/efivars ]; then
@@ -38,6 +31,7 @@ mount -o remount,size=2G /run/archiso/cowspace
 # Collect information:
 
 INSTALL_DISK=
+INSTALL_DISK_PASSWORD=
 INSTALL_HOSTNAME=
 INSTALL_USER=
 INSTALL_FULLNAME=
@@ -47,6 +41,11 @@ INSTALL_PASSWORD_CONFIRM=
 while [ ! -e "${INSTALL_DISK}" ]; do
     lsblk -p
     read -e -p "Install disk (e.g. /dev/sda, /dev/nvme0n1): " INSTALL_DISK
+done
+
+while [ -z "${INSTALL_DISK_PASSWORD}" ]; do
+    read -s -p "Disk password: " INSTALL_DISK_PASSWORD
+    echo
 done
 
 while [ -z "${INSTALL_HOSTNAME}" ]; do
@@ -62,12 +61,13 @@ while [ -z "${INSTALL_FULLNAME}" ]; do
 done
 
 while [ -z "${INSTALL_PASSWORD}" ] || [ "${INSTALL_PASSWORD}" != "${INSTALL_PASSWORD_CONFIRM}" ]; do
-    read -s -p "Password: " INSTALL_PASSWORD
+    read -s -p "User password: " INSTALL_PASSWORD
     echo
-    read -s -p "Confirm password: " INSTALL_PASSWORD_CONFIRM
+    read -s -p "Confirm user password: " INSTALL_PASSWORD_CONFIRM
     echo
 done
 
+INSTALL_USER="$(echo ${INSTALL_USER} | sed "s/ /_/g")"
 INSTALL_PASSWORD="$(echo ${INSTALL_PASSWORD} | sed "s/'/\\\'/g")"
 
 confirm "Ready to install. Press 'y' to continue..."
@@ -76,49 +76,44 @@ confirm "Ready to install. Press 'y' to continue..."
 
 timedatectl set-ntp true
 
-# Partition the disk:
-
-parted -s ${INSTALL_DISK} mklabel gpt
-parted -s ${INSTALL_DISK} mkpart primary fat32 1MiB 513MiB
-parted -s ${INSTALL_DISK} set 1 boot on
-parted -s ${INSTALL_DISK} set 1 esp on
-parted -s ${INSTALL_DISK} mkpart primary 513MiB 100%
-parted -s ${INSTALL_DISK} print
-sleep 5
-
 # Format the partitions:
 
-BOOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '2p')
-ROOTPART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '3p')
+BOOT_PART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '2p')
+ROOT_PART=$(lsblk -lnp -o NAME ${INSTALL_DISK} | sed -n '3p')
 
-mkfs.vfat -F32 ${BOOTPART}
+mkfs.vfat -F32 ${BOOT_PART}
 
-echo "${INSTALL_PASSWORD}" | cryptsetup -q luksFormat ${ROOTPART}
-echo "${INSTALL_PASSWORD}" | cryptsetup luksOpen ${ROOTPART} luks
+echo "${INSTALL_DISK_PASSWORD}" | cryptsetup luksOpen ${ROOT_PART} luks
+sleep 5
 
-pvcreate /dev/mapper/luks
-vgcreate vg0 /dev/mapper/luks
-lvcreate -L 8G vg0 -n swap
-lvcreate -l +100%FREE vg0 -n root
-lvdisplay
-
-mkfs.ext4 /dev/mapper/vg0-root
 mkswap /dev/mapper/vg0-swap
+mkfs.ext4 /dev/mapper/vg0-root
+sleep 5
 
-mount /dev/mapper/vg0-root ${MNT}
 swapon /dev/mapper/vg0-swap
 
+mount /dev/mapper/vg0-root ${MNT}
+
 mkdir ${MNT}/boot
-mount ${BOOTPART} ${MNT}/boot
+mount ${BOOT_PART} ${MNT}/boot
+
+mkdir ${MNT}/home
+mount /dev/mapper/vg0-home ${MNT}/home
 
 # Install the base system:
+
+pacman -Sy --noconfirm archlinux-keyring
 
 pacstrap ${MNT} \
     base \
     base-devel \
     git \
     intel-ucode \
-    sudo
+    linux \
+    linux-firmware \
+    lvm2 \
+    sudo \
+    terminus-font
 
 # Generate the fstab:
 
@@ -136,6 +131,12 @@ arch_chroot "locale-gen"
 
 echo "LANG=en_US.UTF-8" >> ${MNT}/etc/locale.conf
 
+# Configure the vconsole:
+
+cat > ${MNT}/etc/vconsole.conf <<EOF
+FONT=ter-132n
+EOF
+
 # Set the hostname:
 
 echo "${INSTALL_HOSTNAME}" > ${MNT}/etc/hostname
@@ -147,6 +148,8 @@ echo "::1       localhost" >> ${MNT}/etc/hosts
 echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> ${MNT}/etc/hosts
 
 # Create user:
+
+arch_chroot "[ -d /home/${INSTALL_USER} ] && mv /home/${INSTALL_USER} /home/${INSTALL_USER}.$(date +%Y-%m-%d-%H-%M-%S)"
 
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
@@ -167,7 +170,8 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://aur.archlinux.org/yay-bin
 
 arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
     plymouth \
-    plymouth-theme-arch-charge-big"
+    plymouth-theme-arch-charge-big \
+    ttf-dejavu"
 
 # Configure video:
 
@@ -220,7 +224,7 @@ arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init
 
 arch_chroot "sudo -u ${INSTALL_USER} /home/${INSTALL_USER}/init-scripts/deploy.sh -p '${INSTALL_PASSWORD}'"
 
-# Reboot:
+# Done:
 
 confirm "Setup complete. Press 'y' to reboot..."
 

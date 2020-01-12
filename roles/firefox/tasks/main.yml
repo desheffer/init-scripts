@@ -92,6 +92,11 @@
     value: "0"
     no_extra_spaces: yes
 
+- name: Create local applications directory
+  file:
+    path: ~/.local/share/applications
+    state: directory
+
 - name: Copy firefox.desktop
   copy:
     src: /usr/share/applications/firefox.desktop

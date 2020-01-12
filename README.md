@@ -22,9 +22,14 @@ Connect to wifi, if necessary:
 
     wifi-menu
 
-Start the installation script:
+Partition the disk, if necessary:
 
-    curl -LO dougsheffer.com/init-scripts/stage1.sh
+    wget dougsheffer.com/init-scripts/part.sh
+    bash part.sh
+
+Install the base system:
+
+    wget dougsheffer.com/init-scripts/stage1.sh
     bash stage1.sh
 
 The script will prompt for information and run stages 1 and 2. It will reboot
