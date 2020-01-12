@@ -23,7 +23,6 @@
       - gvfs-smb
       - nemo
       - seahorse
-      - sushi
       - termite
       - xdg-user-dirs-gtk
 
