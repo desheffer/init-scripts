@@ -22,7 +22,7 @@
       - gvfs-google
       - gvfs-mtp
       - gvfs-smb
-      - nemo
+      - nautilus
       - seahorse
       - termite
       - xdg-user-dirs-gtk
