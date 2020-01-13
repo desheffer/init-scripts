@@ -15,6 +15,7 @@
       - gnome-disk-utility
       - gnome-font-viewer
       - gnome-keyring
+      - gnome-screenshot
       - gnome-settings-daemon
       - gnome-shell
       - gnome-shell-extensions
