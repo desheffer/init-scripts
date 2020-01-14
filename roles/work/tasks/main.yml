@@ -1,0 +1,15 @@
+---
+
+- name: Create RS directory
+  file:
+    path: ~/rs
+    state: directory
+
+- name: Clone heimdall repository
+  git:
+    repo: "https://github.com/needcaffeine/heimdall.git"
+    dest: ~/rs/heimdall
+    accept_hostkey: yes
+    update: no
+  notify:
+    - Install dotfiles
