@@ -10,3 +10,4 @@
 - name: Install Yubico U2F library
   aur:
     name: libu2f-host
+    skip_installed: true

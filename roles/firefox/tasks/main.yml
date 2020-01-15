@@ -8,6 +8,7 @@
 - name: Install LastPass
   aur:
     name: lastpass
+    skip_installed: true
 
 - name: Install libva drivers
   become: yes

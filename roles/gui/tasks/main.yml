@@ -20,3 +20,4 @@
       - gpmdp
       - slack-desktop
       - zoom
+    skip_installed: true
