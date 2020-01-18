@@ -1,0 +1,8 @@
+---
+
+- name: Set journald size limit
+  become: yes
+  lineinfile:
+    path: /etc/systemd/journald.conf
+    regexp: "^#?SystemMaxUse=.*$"
+    line: "SystemMaxUse=50M"

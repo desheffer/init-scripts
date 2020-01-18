@@ -18,6 +18,7 @@
     - { role: power, tags: ['power'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
+    - { role: systemd, tags: ['systemd'] }
     - { role: user, tags: ['user'] }
     - { role: wallpaper, tags: ['wallpaper'] }
     - { role: watchdog, tags: ['watchdog'] }
