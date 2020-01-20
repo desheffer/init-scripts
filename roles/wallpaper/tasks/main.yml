@@ -1,19 +1,7 @@
 ---
 
-- name: Create custom wallpaper directory
-  become: yes
-  file:
-    path: /usr/share/backgrounds/custom
-    state: directory
-
-- name: Download Small Memory
+- name: Download wallpaper
   become: yes
   get_url:
     url: https://cdn.dribbble.com/users/5031/screenshots/3713646/attachments/832536/wallpaper_mikael_gustafsson.png
-    dest: /usr/share/backgrounds/custom/Small_Memory.png
-
-- name: Copy wallpaper index
-  become: yes
-  template:
-    src: custom-backgrounds.xml
-    dest: /usr/share/gnome-background-properties/custom-backgrounds.xml
+    dest: ~/.wallpaper
