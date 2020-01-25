@@ -18,12 +18,12 @@
       - gnome-settings-daemon
       - gnome-shell
       - gnome-shell-extensions
-      - gnome-terminal
       - gvfs-google
       - gvfs-mtp
       - gvfs-smb
       - nautilus
       - seahorse
+      - terminator
       - xdg-user-dirs-gtk
 
 - name: Install GNOME extra packages
