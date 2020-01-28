@@ -4,8 +4,8 @@
   become: yes
   pacman:
     name:
+      - color-picker
       - gimp
-      - gpick
       - inkscape
       - libreoffice-fresh
       - qalculate-gtk
