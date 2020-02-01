@@ -39,7 +39,7 @@ while getopts ":hp:t:" opt; do
             show_help
             ;;
         p)
-            become=("--extra-vars" "ansible_become_pass=${OPTARG}")
+            become=("--extra-vars" "ansible_become_pass='${OPTARG}'")
             ;;
         t)
             tag=("-t" "${OPTARG}")
@@ -63,4 +63,4 @@ if [ ! -z ${1+x} ]; then
 fi
 
 source venv/bin/activate
-ansible-playbook ${become[@]} ${tag[@]} deploy.yml
+ansible-playbook "${become[@]}" "${tag[@]}" deploy.yml

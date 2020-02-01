@@ -1,7 +1,6 @@
 ---
 
 - name: Download wallpaper
-  become: yes
   get_url:
     url: https://cdn.dribbble.com/users/5031/screenshots/3713646/attachments/832536/wallpaper_mikael_gustafsson.png
     dest: ~/.wallpaper

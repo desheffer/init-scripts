@@ -4,7 +4,6 @@
   become: yes
   pacman:
     name:
-      - color-picker
       - gimp
       - inkscape
       - libreoffice-fresh
@@ -17,6 +16,7 @@
 - name: Install extra GUI packages
   aur:
     name:
+      - color-picker
       - gpmdp
       - slack-desktop
       - zoom

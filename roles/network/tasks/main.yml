@@ -17,17 +17,3 @@
   systemd:
     name: NetworkManager.service
     enabled: yes
-
-- name: Copy resolv.conf
-  become: yes
-  template:
-    src: resolv.conf
-    dest: /etc/resolv.static.conf
-
-- name: Link resolv.conf
-  become: yes
-  file:
-    src: /etc/resolv.static.conf
-    dest: /etc/resolv.conf
-    state: link
-    force: yes

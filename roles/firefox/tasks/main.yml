@@ -35,7 +35,7 @@
     path: ~/.mozilla/firefox/profiles.ini
     section: Profile0
     option: IsRelative
-    value: 1
+    value: "1"
     no_extra_spaces: yes
 
 - name: Set Personal profile path
@@ -69,7 +69,7 @@
     path: ~/.mozilla/firefox/profiles.ini
     section: Profile1
     option: IsRelative
-    value: 1
+    value: "1"
     no_extra_spaces: yes
 
 - name: Set Work profile path

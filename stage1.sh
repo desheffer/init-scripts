@@ -17,6 +17,10 @@ function confirm {
     done
 }
 
+# Change the font size:
+
+setfont latarcyrheb-sun32
+
 # Assert we booted in UEFI mode:
 
 if [ ! -d /sys/firmware/efi/efivars ]; then
