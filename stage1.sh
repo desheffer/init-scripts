@@ -100,6 +100,10 @@ mount ${BOOT_PART} ${MNT}/boot
 mkdir ${MNT}/home
 mount /dev/mapper/vg0-home ${MNT}/home
 
+# Update the mirror list:
+
+curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https" | sed 's/^#//' > /etc/pacman.d/mirrorlist
+
 # Install the base system:
 
 pacman -Sy --noconfirm archlinux-keyring
