@@ -28,18 +28,18 @@ function show_help {
     echo "Usage: ${0} [OPTION]..."
     echo "Deploy init-scripts to this computer."
     echo
-    echo "  -p    use the specified SUDO password"
+    echo "  -p    do not prompt for SUDO password"
     echo "  -t    deploy a specific tag"
     exit 0
 }
 
-while getopts ":hp:t:" opt; do
+while getopts ":hpt:" opt; do
     case ${opt} in
         h)
             show_help
             ;;
         p)
-            become=("--extra-vars" "ansible_become_pass='${OPTARG}'")
+            become=()
             ;;
         t)
             tag=("-t" "${OPTARG}")

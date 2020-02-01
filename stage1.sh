@@ -162,9 +162,14 @@ arch_chroot "[ -d /home/${INSTALL_USER} ] && mv /home/${INSTALL_USER} /home/${IN
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
 arch_chroot "mkdir -p /etc/sudoers.d"
+
 cat > ${MNT}/etc/sudoers.d/10-${INSTALL_USER} <<EOF
 ${INSTALL_USER} ALL=(ALL) ALL
 ${INSTALL_USER} ALL=(root) NOPASSWD: /usr/bin/pacman
+EOF
+
+cat > ${MNT}/etc/sudoers.d/99-install <<EOF
+${INSTALL_USER} ALL=(ALL) NOPASSWD: ALL
 EOF
 
 # Install yay:
@@ -230,7 +235,11 @@ arch_chroot "echo -e '${INSTALL_PASSWORD}\n${INSTALL_PASSWORD}' | passwd ${INSTA
 
 arch_chroot "sudo -u ${INSTALL_USER} git clone https://github.com/desheffer/init-scripts.git /home/${INSTALL_USER}/init-scripts"
 
-arch_chroot "sudo -u ${INSTALL_USER} /home/${INSTALL_USER}/init-scripts/deploy.sh -p '${INSTALL_PASSWORD}'"
+arch_chroot "sudo -u ${INSTALL_USER} /home/${INSTALL_USER}/init-scripts/deploy.sh -p"
+
+# Clean up:
+
+rm -f ${MNT}/etc/sudoers.d/99-install
 
 # Done:
 
