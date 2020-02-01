@@ -23,7 +23,6 @@
       - gvfs-smb
       - nautilus
       - seahorse
-      - terminator
       - xdg-user-dirs-gtk
 
 - name: Install GNOME extra packages
