@@ -37,3 +37,8 @@
     option: Icon
     value: "terminal"
     no_extra_spaces: yes
+
+- name: Remove steam.desktop
+  file:
+    path: ~/Desktop/steam.desktop
+    state: absent
