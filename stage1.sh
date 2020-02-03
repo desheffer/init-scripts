@@ -186,10 +186,6 @@ arch_chroot "sudo -u ${INSTALL_USER} yay -S --noconfirm \
     plymouth-theme-arch-charge-big \
     ttf-dejavu"
 
-# Configure video:
-
-echo "options i915 enable_psr=2 enable_rc6=7 enable_fbc=1 semaphores=1 lvds_downclock=1 enable_guc_loading=1 enable_guc_submission=1" > ${MNT}/etc/modprobe.d/i915.conf
-
 # Install bootloader:
 
 arch_chroot "bootctl --path=/boot install"
