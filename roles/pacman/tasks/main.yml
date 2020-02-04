@@ -64,8 +64,3 @@
       dest: /etc/makepkg.conf
       regexp: "^COMPRESSXZ"
       line: "COMPRESSXZ=(xz -c -z - --threads=0)"
-
-- name: Copy yay configuration
-  template:
-    src: yay.json
-    dest: ~/.config/yay/config.json
