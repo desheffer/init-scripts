@@ -7,7 +7,7 @@
 
 - name: Create config directory
   file:
-    path: ~/.config/
+    path: ~/.config
     state: directory
 
 - name: Copy Chromium command line arguments

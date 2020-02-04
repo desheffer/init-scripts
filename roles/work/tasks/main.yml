@@ -11,5 +11,3 @@
     dest: ~/rs/heimdall
     accept_hostkey: yes
     update: no
-  notify:
-    - Install dotfiles
