@@ -9,4 +9,4 @@ Target = pacman-mirrorlist
 Description = Updating mirrorlist...
 When = PostTransaction
 Depends = reflector
-Exec = /bin/sh -c "/usr/bin/python3 -m Reflector --country US --protocol https --latest 50 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"
+Exec = /bin/sh -c "/usr/bin/python3 -m Reflector --country US --latest 10 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"
