@@ -19,6 +19,7 @@
     name:
       - nerd-fonts-dejavu-complete
       - ttf-ms-fonts
+      - ttf-vista-fonts
     skip_installed: true
 
 - name: Apply local font configuration
