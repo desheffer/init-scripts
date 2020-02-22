@@ -16,6 +16,7 @@
     - { role: network, tags: ['network'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: power, tags: ['power'] }
+    - { role: printer, tags: ['printer'] }
     - { role: spell, tags: ['spell'] }
     - { role: ssd, tags: ['ssd'] }
     - { role: systemd, tags: ['systemd'] }

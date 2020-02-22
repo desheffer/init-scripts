@@ -1,0 +1,17 @@
+---
+
+- name: Install CUPS
+  become: true
+  pacman:
+    name: cups
+
+- name: Install driver for Brother HL-2240D
+  aur:
+    name: brother-hl2240d
+    skip_installed: true
+
+- name: Enable CUPS service
+  become: yes
+  systemd:
+    name: cups-browsed.service
+    enabled: yes
