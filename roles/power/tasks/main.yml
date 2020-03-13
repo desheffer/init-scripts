@@ -17,12 +17,6 @@
     name: tlp.service
     enabled: yes
 
-- name: Enable TLP sleep service
-  become: yes
-  systemd:
-    name: tlp-sleep.service
-    enabled: yes
-
 - name: Mask systemd radio service
   become: yes
   systemd:
