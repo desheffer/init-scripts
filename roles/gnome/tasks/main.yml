@@ -15,7 +15,6 @@
       - gnome-disk-utility
       - gnome-keyring
       - gnome-screenshot
-      - gnome-settings-daemon
       - gnome-shell
       - gnome-shell-extensions
       - gvfs-google
