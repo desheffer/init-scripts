@@ -37,7 +37,7 @@
 - name: Install GNOME AUR packages
   aur:
     name:
-      - gnome-shell-extension-dash-to-panel-git
+      - gnome-shell-extension-dash-to-panel
       - gnome-shell-extension-openweather-git
       - gnome-shell-extension-sound-output-device-chooser-git
       - tela-icon-theme-git
