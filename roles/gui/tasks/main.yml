@@ -23,16 +23,16 @@
       - zoom
     skip_installed: true
 
-- name: Copy alacritty.desktop
+- name: Copy Alacritty.desktop
   copy:
-    src: /usr/share/applications/alacritty.desktop
-    dest: ~/.local/share/applications/alacritty.desktop
+    src: /usr/share/applications/Alacritty.desktop
+    dest: ~/.local/share/applications/Alacritty.desktop
     force: no
     remote_src: yes
 
 - name: Set Alacritty icon
   ini_file:
-    path: ~/.local/share/applications/alacritty.desktop
+    path: ~/.local/share/applications/Alacritty.desktop
     section: Desktop Entry
     option: Icon
     value: "terminal"
