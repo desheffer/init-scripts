@@ -12,6 +12,7 @@
       - steam
       - transmission-gtk
       - vlc
+      - vulkan-intel
       - xsel
 
 - name: Install extra GUI packages
