@@ -10,11 +10,6 @@
     path: ~/.config
     state: directory
 
-- name: Copy Chromium command line arguments
-  template:
-    src: chromium-flags.conf
-    dest: ~/.config/chromium-flags.conf
-
 - name: Install libva drivers
   become: yes
   pacman:
