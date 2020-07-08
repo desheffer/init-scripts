@@ -33,6 +33,7 @@
 - name: Force pacman mirrorlist update
   become: yes
   command: "pacman -S --noconfirm pacman-mirrorlist"
+  changed_when: False
 
 - name: Copy pacman systemd-boot hook
   become: yes

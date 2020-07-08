@@ -82,10 +82,11 @@
   notify:
     - Update dconf
 
-- name: Reset favorite-apps
+- name: Force reset favorite-apps
   dconf:
     key: /org/gnome/shell/favorite-apps
     state: absent
+  changed_when: False
 
 - name: Copy AccountServices configuration
   become: yes
