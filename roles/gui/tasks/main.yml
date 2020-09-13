@@ -4,7 +4,6 @@
   become: yes
   pacman:
     name:
-      - alacritty
       - gimp
       - inkscape
       - libreoffice-fresh
@@ -23,21 +22,6 @@
       - slack-desktop
       - zoom
     skip_installed: true
-
-- name: Copy Alacritty.desktop
-  copy:
-    src: /usr/share/applications/Alacritty.desktop
-    dest: ~/.local/share/applications/Alacritty.desktop
-    force: no
-    remote_src: yes
-
-- name: Set Alacritty icon
-  ini_file:
-    path: ~/.local/share/applications/Alacritty.desktop
-    section: Desktop Entry
-    option: Icon
-    value: "terminal"
-    no_extra_spaces: yes
 
 - name: Remove steam.desktop
   file:
