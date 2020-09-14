@@ -1,9 +1,77 @@
 ---
 
-- name: Create RS directory
+- name: Create ~/rs directory
   file:
     path: ~/rs
     state: directory
+
+- name: Create ~/.rs directory
+  file:
+    path: ~/.rs
+    state: directory
+
+- name: Create ~/.rs/.aws directory
+  file:
+    path: ~/.rs/.aws
+    state: directory
+
+- name: Link ~/.rs/.aws/config
+  file:
+    src: ~/.aws/config
+    dest: ~/.rs/.aws/config
+    state: link
+    force: yes
+
+- name: Link ~/.rs/.aws/credentials
+  file:
+    src: ~/.aws/credentials
+    dest: ~/.rs/.aws/credentials
+    state: link
+    force: yes
+
+- name: Create ~/.rs/.bash_history file
+  file:
+    path: ~/.rs/.bash_history
+    state: touch
+
+- name: Create ~/.rs/.composer directory
+  file:
+    path: ~/.rs/.composer
+    state: directory
+
+- name: Link ~/.rs/.composer/auth.json
+  file:
+    src: ~/.config/composer/auth.json
+    dest: ~/.rs/.composer/auth.json
+    state: link
+    force: yes
+
+- name: Create ~/.rs/.gitignore file
+  file:
+    path: ~/.rs/.gitignore
+    state: touch
+
+- name: Create ~/.rs/.ssh directory
+  file:
+    path: ~/.rs/.ssh
+    state: directory
+
+- name: Link ~/.rs/.ssh/id_rsa
+  file:
+    src: ~/.ssh/id_ed25519
+    dest: ~/.rs/.ssh/id_rsa
+    state: link
+    force: yes
+
+- name: Create ~/.rs/.ssh/known_hosts file
+  file:
+    path: ~/.rs/.ssh/known_hosts
+    state: touch
+
+- name: Create ~/.rs/.zsh_history file
+  file:
+    path: ~/.rs/.zsh_history
+    state: touch
 
 - name: Clone heimdall repository
   git:
