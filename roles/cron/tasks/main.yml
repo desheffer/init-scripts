@@ -1,0 +1,13 @@
+---
+
+- name: Install cronie
+  become: yes
+  pacman:
+    name:
+      - cronie
+
+- name: Enable cronie service
+  become: yes
+  systemd:
+    name: cronie.service
+    enabled: yes

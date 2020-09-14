@@ -6,6 +6,7 @@
 
     - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
+    - { role: cron, tags: ['cron'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
