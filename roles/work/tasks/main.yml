@@ -30,9 +30,10 @@
     force: yes
 
 - name: Create ~/.rs/.bash_history file
-  file:
-    path: ~/.rs/.bash_history
-    state: touch
+  copy:
+    content: ""
+    dest: ~/.rs/.bash_history
+    force: no
 
 - name: Create ~/.rs/.composer directory
   file:
@@ -47,9 +48,10 @@
     force: yes
 
 - name: Create ~/.rs/.gitignore file
-  file:
-    path: ~/.rs/.gitignore
-    state: touch
+  copy:
+    content: ""
+    dest: ~/.rs/.gitignore
+    force: no
 
 - name: Create ~/.rs/.ssh directory
   file:
@@ -64,14 +66,16 @@
     force: yes
 
 - name: Create ~/.rs/.ssh/known_hosts file
-  file:
-    path: ~/.rs/.ssh/known_hosts
-    state: touch
+  copy:
+    content: ""
+    dest: ~/.rs/.ssh/known_hosts
+    force: no
 
 - name: Create ~/.rs/.zsh_history file
-  file:
-    path: ~/.rs/.zsh_history
-    state: touch
+  copy:
+    content: ""
+    dest: ~/.rs/.zsh_history
+    force: no
 
 - name: Clone heimdall repository
   git:
