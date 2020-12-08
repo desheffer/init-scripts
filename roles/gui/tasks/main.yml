@@ -18,8 +18,8 @@
   aur:
     name:
       - color-picker
-      - gpmdp
       - slack-desktop
+      - ytmdesktop-git
       - zoom
     skip_installed: true
 
