@@ -1,0 +1,26 @@
+---
+
+- name: Install Spotify
+  aur:
+    name: spotify
+    skip_installed: true
+
+- name: Create local applications directory
+  file:
+    path: ~/.local/share/applications
+    state: directory
+
+- name: Copy spotify.desktop
+  copy:
+    src: /usr/share/applications/spotify.desktop
+    dest: ~/.local/share/applications/spotify.desktop
+    force: no
+    remote_src: yes
+
+- name: Open profile manager on normal action
+  ini_file:
+    path: ~/.local/share/applications/spotify.desktop
+    section: Desktop Entry
+    option: Exec
+    value: "/usr/bin/spotify --force-device-scale-factor=2"
+    no_extra_spaces: yes

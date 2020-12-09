@@ -19,6 +19,7 @@
     - { role: power, tags: ['power'] }
     - { role: printer, tags: ['printer'] }
     - { role: spell, tags: ['spell'] }
+    - { role: spotify, tags: ['spotify'] }
     - { role: ssd, tags: ['ssd'] }
     - { role: systemd, tags: ['systemd'] }
     - { role: user, tags: ['user'] }

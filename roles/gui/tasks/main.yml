@@ -19,7 +19,6 @@
     name:
       - color-picker
       - slack-desktop
-      - ytmdesktop-git
       - zoom
     skip_installed: true
 
