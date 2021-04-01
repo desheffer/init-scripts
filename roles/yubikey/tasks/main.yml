@@ -4,6 +4,5 @@
   become: true
   pacman:
     name:
-      - libu2f-host
       - yubikey-manager
       - yubikey-personalization
