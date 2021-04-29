@@ -18,6 +18,7 @@
   aur:
     name:
       - color-picker
+      - lastpass
       - slack-desktop
       - zoom
     skip_installed: true
