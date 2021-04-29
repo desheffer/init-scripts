@@ -1,0 +1,9 @@
+---
+
+- name: Install Intel packages
+  become: yes
+  pacman:
+    name:
+      - intel-media-driver
+      - libva-intel-driver
+      - vulkan-intel

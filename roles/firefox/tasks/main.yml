@@ -5,13 +5,6 @@
   pacman:
     name: firefox
 
-- name: Install libva drivers
-  become: yes
-  pacman:
-    name:
-      - intel-media-driver
-      - libva-intel-driver
-
 - name: Create Personal profile directory
   file:
     path: ~/.mozilla/firefox/Personal

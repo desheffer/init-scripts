@@ -10,13 +10,6 @@
     path: ~/.config
     state: directory
 
-- name: Install libva drivers
-  become: yes
-  pacman:
-    name:
-      - intel-media-driver
-      - libva-intel-driver
-
 - name: Install Flash support
   become: yes
   pacman:
