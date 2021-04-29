@@ -31,6 +31,7 @@
     name:
       - arc-gtk-theme
       - dconf-editor
+      - gnome-shell-extensions
       - gnome-tweaks
       - python-psutil
 
