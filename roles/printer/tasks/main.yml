@@ -8,7 +8,6 @@
 - name: Install driver for Brother HL-2240D
   aur:
     name: brother-hl2240d
-    skip_installed: true
 
 - name: Enable CUPS service
   become: yes

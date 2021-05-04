@@ -18,4 +18,3 @@
 - name: Install Widevine support
   aur:
     name: chromium-widevine
-    skip_installed: true

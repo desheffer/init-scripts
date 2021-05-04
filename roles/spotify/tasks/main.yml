@@ -3,7 +3,6 @@
 - name: Install Spotify
   aur:
     name: spotify
-    skip_installed: true
 
 - name: Create local applications directory
   file:
