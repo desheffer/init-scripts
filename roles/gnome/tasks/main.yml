@@ -35,11 +35,27 @@
       - gnome-tweaks
       - python-psutil
 
+- name: (GNOME 3.40 workaround) Create gnome-shell-extension-dash-to-panel-git directory
+  file:
+    path: ~/.cache/yay/gnome-shell-extension-dash-to-panel-gnome40-git
+    state: directory
+
+- name: (GNOME 3.40 workaround) Copy gnome-shell-extension-dash-to-panel-git PKGBUILD
+  template:
+    src: gnome-shell-extension-dash-to-panel-git.PKGBUILD
+    dest: ~/.cache/yay/gnome-shell-extension-dash-to-panel-gnome40-git/PKGBUILD
+
+- name: (GNOME 3.40 workaround) Install gnome-shell-extension-dash-to-panel-git
+  aur:
+    name: gnome-shell-extension-dash-to-panel-git
+    use: makepkg
+    local_pkgbuild: ~/.cache/yay/gnome-shell-extension-dash-to-panel-gnome40-git
+
 - name: Install GNOME AUR packages
   aur:
     name:
-      - gnome-shell-extension-dash-to-panel-git
-      - gnome-shell-extension-openweather-git
+      # - gnome-shell-extension-dash-to-panel-git
+      # - gnome-shell-extension-openweather-git
       - gnome-shell-extension-sound-output-device-chooser-git
       - tela-icon-theme-git
 
