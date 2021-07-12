@@ -26,3 +26,4 @@
       - sudo
       - tree
       - wget
+      - yq
