@@ -6,6 +6,7 @@
     name:
       - bash-completion
       - the_silver_searcher
+      - tmate
       - tmux
       - vim
 
