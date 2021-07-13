@@ -21,6 +21,7 @@
       - mlocate
       - netcat
       - python
+      - python-hjson
       - rsync
       - sshpass
       - sudo
