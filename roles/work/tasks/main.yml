@@ -10,22 +10,10 @@
     path: ~/.rs
     state: directory
 
-- name: Create ~/.rs/.aws directory
+- name: Link ~/.rs/.aws
   file:
-    path: ~/.rs/.aws
-    state: directory
-
-- name: Link ~/.rs/.aws/config
-  file:
-    src: ~/.aws/config
-    dest: ~/.rs/.aws/config
-    state: link
-    force: yes
-
-- name: Link ~/.rs/.aws/credentials
-  file:
-    src: ~/.aws/credentials
-    dest: ~/.rs/.aws/credentials
+    src: ~/.aws
+    dest: ~/.rs/.aws
     state: link
     force: yes
 
