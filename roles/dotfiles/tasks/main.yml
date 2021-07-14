@@ -4,11 +4,11 @@
   become: yes
   pacman:
     name:
-      - bash-completion
       - the_silver_searcher
       - tmate
       - tmux
       - vim
+      - zsh
 
 - name: Remove vi
   become: yes
@@ -36,3 +36,9 @@
     path: /etc/vimrc
     regexp: "^\"?let skip_defaults_vim=.*$"
     line: "let skip_defaults_vim=1"
+
+- name: Set zsh as the default shell
+  become: yes
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /bin/zsh
