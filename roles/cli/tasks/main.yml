@@ -12,6 +12,7 @@
       - file
       - fwupd
       - git
+      - github-cli
       - htop
       - jq
       - lastpass-cli
