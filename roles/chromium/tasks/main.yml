@@ -5,16 +5,6 @@
   pacman:
     name: chromium
 
-- name: Create config directory
-  file:
-    path: ~/.config
-    state: directory
-
-- name: Install Flash support
-  become: yes
-  pacman:
-    name: pepper-flash
-
 - name: Install Widevine support
   aur:
     name: chromium-widevine
