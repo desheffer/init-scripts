@@ -116,3 +116,10 @@
     option: Exec
     value: "/usr/lib/firefox/firefox --ProfileManager --private-window %u"
     no_extra_spaces: yes
+
+- name: Install xdg-desktop-portal for screen sharing
+  become: yes
+  pacman:
+    name:
+      - xdg-desktop-portal
+      - xdg-desktop-portal-gtk
