@@ -4,10 +4,10 @@
   become: yes
   pacman:
     name:
+      - neovim
       - the_silver_searcher
       - tmate
       - tmux
-      - vim
       - zsh
 
 - name: Remove vi
@@ -17,9 +17,9 @@
   changed_when: "'Packages' in vi_result.stdout"
   failed_when: False
 
-- name: Install vi-vim-symlink
+- name: Install neovim-symlinks
   aur:
-    name: vi-vim-symlink
+    name: neovim-symlinks
 
 - name: Clone dotfiles repository
   git:
@@ -29,13 +29,6 @@
     update: no
   notify:
     - Install dotfiles
-
-- name: Do not load defaults if ~/.vimrc is missing
-  become: yes
-  lineinfile:
-    path: /etc/vimrc
-    regexp: "^\"?let skip_defaults_vim=.*$"
-    line: "let skip_defaults_vim=1"
 
 - name: Set zsh as the default shell
   become: yes
