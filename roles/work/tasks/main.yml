@@ -65,12 +65,18 @@
     dest: ~/.rs/.zsh_history
     force: no
 
-- name: Clone heimdall repository
-  git:
-    repo: "https://github.com/needcaffeine/heimdall.git"
-    dest: ~/rs/heimdall
-    accept_hostkey: yes
-    update: no
+- name: Check if heimdallr exists
+  stat:
+    path: /usr/local/bin/heimdallr
+  register: heimdallr
+
+- name: Copy heimdallr binary
+  become: true
+  get_url:
+    url: "https://github.com/keelerm84/heimdallr/releases/download/0.2.0/heimdallr-x86_64-unknown-linux-musl"
+    dest: /usr/local/bin/heimdallr
+    mode: 0755
+  when: heimdallr.stat.exists == False
 
 - name: Clone AWS rotate IAM keys repository
   git:
