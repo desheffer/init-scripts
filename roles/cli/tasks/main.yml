@@ -28,4 +28,8 @@
       - sudo
       - tree
       - wget
-      - yq
+
+- name: Install extra CLI packages
+  aur:
+    name:
+      - go-yq-bin
