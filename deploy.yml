@@ -4,7 +4,6 @@
   roles:
     - { role: pacman, tags: ['pacman'] }
 
-    - { role: chromium, tags: ['chromium'] }
     - { role: cli, tags: ['cli'] }
     - { role: cron, tags: ['cron'] }
     - { role: dconf, tags: ['dconf'] }
