@@ -14,18 +14,6 @@
     append: yes
     groups: docker
 
-- name: Create alternate Docker root directory
-  file:
-    path: "/home/{{ lookup('env', 'USER') }}/.docker-root"
-    state: directory
-
-- name: Relocate Docker root directory
-  become: yes
-  file:
-    src: "/home/{{ lookup('env', 'USER') }}/.docker-root"
-    dest: /var/lib/docker
-    state: link
-
 - name: Copy Docker daemon configuration
   become: yes
   template:
