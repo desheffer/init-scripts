@@ -4,6 +4,7 @@
   become: yes
   pacman:
     name:
+      - fzf
       - neovim
       - the_silver_searcher
       - tmate
