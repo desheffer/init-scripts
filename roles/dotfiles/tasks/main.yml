@@ -6,6 +6,7 @@
     name:
       - fzf
       - neovim
+      - ripgrep
       - the_silver_searcher
       - tmate
       - tmux
