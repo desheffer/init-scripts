@@ -16,7 +16,6 @@
 - name: Install extra GUI packages
   aur:
     name:
-      - color-picker
       - lastpass
       - slack-desktop
       - zoom
