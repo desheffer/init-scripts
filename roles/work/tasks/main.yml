@@ -84,4 +84,4 @@
     hour: "0"
     minute: "0"
     weekday: "0"
-    job: "~/rs/aws-rotate-iam-keys/src/bin/aws-rotate-iam-keys"
+    job: "~/rs/aws-rotate-iam-keys/src/bin/aws-rotate-iam-keys --profile rsc-main"
