@@ -5,6 +5,7 @@
   pacman:
     name:
       - aws-cli
+      - bat
       - bc
       - coreutils
       - curl
