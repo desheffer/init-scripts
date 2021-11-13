@@ -16,7 +16,7 @@
     force: no
     remote_src: yes
 
-- name: Open profile manager on normal action
+- name: Open Spotify with 4K support
   ini_file:
     path: ~/.local/share/applications/spotify.desktop
     section: Desktop Entry
