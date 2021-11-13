@@ -5,6 +5,7 @@
   pacman:
     name:
       - fzf
+      - kitty
       - neovim
       - ripgrep
       - the_silver_searcher

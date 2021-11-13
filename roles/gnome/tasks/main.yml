@@ -16,7 +16,6 @@
       - gnome-screenshot
       - gnome-shell
       - gnome-shell-extensions
-      - gnome-terminal
       - gvfs-google
       - gvfs-mtp
       - gvfs-smb
