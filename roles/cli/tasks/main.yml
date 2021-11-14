@@ -34,3 +34,4 @@
   aur:
     name:
       - go-yq-bin
+      - google-cloud-sdk
