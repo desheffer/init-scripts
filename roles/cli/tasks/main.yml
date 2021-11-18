@@ -10,6 +10,7 @@
       - coreutils
       - curl
       - entr
+      - expect
       - file
       - fwupd
       - git
