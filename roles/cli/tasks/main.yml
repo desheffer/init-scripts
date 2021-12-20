@@ -15,6 +15,7 @@
       - file
       - fwupd
       - git
+      - git-delta
       - github-cli
       - htop
       - jq
