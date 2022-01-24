@@ -1,22 +1,5 @@
 ---
 
-- name: Install TLP
-  become: yes
-  pacman:
-    name: tlp
-
-- name: Copy TLP configuration
-  become: yes
-  template:
-    src: tlp.conf
-    dest: /etc/default/tlp
-
-- name: Enable TLP service
-  become: yes
-  systemd:
-    name: tlp.service
-    enabled: yes
-
 - name: Mask systemd radio service
   become: yes
   systemd:
@@ -29,7 +12,9 @@
     name: systemd-rfkill.socket
     masked: yes
 
-- name: Install PowerTOP
+- name: Disable module-suspend-on-idle
   become: yes
-  pacman:
-    name: powertop
+  lineinfile:
+    path: /etc/pulse/default.pa
+    regexp: "^#?load-module module-suspend-on-idle$"
+    line: "#load-module module-suspend-on-idle"
