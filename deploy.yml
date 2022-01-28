@@ -18,6 +18,7 @@
     - { role: ntp, tags: ['ntp'] }
     - { role: power, tags: ['power'] }
     - { role: printer, tags: ['printer'] }
+    - { role: security, tags: ['security'] }
     - { role: spell, tags: ['spell'] }
     - { role: spotify, tags: ['spotify'] }
     - { role: ssd, tags: ['ssd'] }

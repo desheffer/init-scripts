@@ -1,0 +1,8 @@
+---
+
+- name: Set failed login count
+  become: yes
+  lineinfile:
+    path: /etc/security/faillock.conf
+    regexp: "^#? deny = .*$"
+    line: "deny = 10"
