@@ -5,11 +5,8 @@
   pacman:
     name:
       - gimp
-      - inkscape
-      - libreoffice-fresh
       - qalculate-gtk
       - steam
-      - transmission-gtk
       - vlc
       - xsel
 
@@ -18,7 +15,6 @@
     name:
       - lastpass
       - slack-desktop
-      - zoom
 
 - name: Remove steam.desktop
   file:
