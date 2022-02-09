@@ -46,6 +46,13 @@
     path: ~/.rs/.ssh
     state: directory
 
+- name: Link ~/.rs/.ssh/id_rsa file
+  file:
+    src: ~/.ssh/id_ed25519-rsc-git
+    dest: ~/.rs/.ssh/id_rsa
+    state: link
+    force: yes
+
 - name: Create ~/.rs/.ssh/known_hosts file
   copy:
     content: ""
