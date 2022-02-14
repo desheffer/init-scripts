@@ -30,7 +30,6 @@
       - dconf-editor
       - gnome-shell-extensions
       - gnome-tweaks
-      - python-psutil
 
 - name: Install GNOME AUR packages
   aur:
