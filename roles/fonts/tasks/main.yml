@@ -17,7 +17,7 @@
 - name: Install font AUR packages
   aur:
     name:
-      - nerd-fonts-fira-code
+      - nerd-fonts-jetbrains-mono
       - ttf-ms-fonts
       - ttf-vista-fonts
 
