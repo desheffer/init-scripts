@@ -7,6 +7,6 @@
 
 - name: Download wallpaper
   get_url:
-    url: https://cdn.dribbble.com/users/5031/screenshots/3713646/attachments/832536/wallpaper_mikael_gustafsson.png
+    url: https://raw.githubusercontent.com/GNOME/gnome-backgrounds/gnome-41/backgrounds/Blobs.svg
     dest: ~/.wallpaper
   when: wallpaper.stat.exists == False
