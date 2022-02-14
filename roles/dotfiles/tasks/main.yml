@@ -5,6 +5,7 @@
   pacman:
     name:
       - fzf
+      - jre-openjdk
       - kitty
       - neovim
       - ripgrep
