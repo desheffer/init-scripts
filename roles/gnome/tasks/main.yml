@@ -36,7 +36,6 @@
     name:
       - gnome-shell-extension-dash-to-panel-git
       - gnome-shell-extension-sound-output-device-chooser-git
-      - gruvbox-material-gtk-theme-git
       - tela-icon-theme-git
 
 - name: Copy dconf user profile
