@@ -84,6 +84,12 @@
     state: absent
   changed_when: False
 
+- name: Force reset idle-delay
+  dconf:
+    key: /org/gnome/desktop/session/idle-delay
+    state: absent
+  changed_when: False
+
 - name: Copy AccountServices configuration
   become: yes
   template:
