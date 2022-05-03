@@ -157,7 +157,7 @@ echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}" >> ${MNT}/e
 
 # Create user:
 
-arch_chroot "[ -d /home/${INSTALL_USER} ] && mv /home/${INSTALL_USER} /home/${INSTALL_USER}.$(date +%Y-%m-%d-%H-%M-%S)"
+arch_chroot "if [ -d /home/${INSTALL_USER} ]; then mv /home/${INSTALL_USER} /home/${INSTALL_USER}.$(date +%Y-%m-%d-%H-%M-%S); fi"
 
 arch_chroot "useradd -m -c '${INSTALL_FULLNAME}' ${INSTALL_USER}"
 
