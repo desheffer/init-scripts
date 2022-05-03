@@ -20,16 +20,16 @@ guide](https://wiki.archlinux.org/index.php/Installation_guide).
 
 Connect to wifi, if necessary:
 
-    wifi-menu
+    iwctl station DEVICE connect SSID
 
 Partition the disk, if necessary:
 
-    wget dougsheffer.com/init-scripts/part.sh
+    curl -LO dougsheffer.com/init-scripts/part.sh
     bash part.sh
 
 Install the base system:
 
-    wget dougsheffer.com/init-scripts/stage1.sh
+    curl -LO dougsheffer.com/init-scripts/stage1.sh
     bash stage1.sh
 
 The script will prompt for information and run stages 1 and 2. It will reboot
