@@ -32,7 +32,7 @@ done
 
 INSTALL_DISK_PASSWORD="$(echo "${INSTALL_DISK_PASSWORD}" | sed "s/'/\\\'/g")"
 
-confirm "Ready to format. Press 'y' to continue..."
+confirm "Ready to create partitions. Press 'y' to continue..."
 
 # Partition the disk:
 
@@ -56,10 +56,25 @@ echo "${INSTALL_DISK_PASSWORD}" | cryptsetup luksOpen ${ROOT_PART} luks
 
 pvcreate /dev/mapper/luks
 vgcreate vg0 /dev/mapper/luks
-lvcreate -L 8G vg0 -n swap
-lvcreate -L 64G vg0 -n root
+vgdisplay
+
+SIZE_SWAP=
+SIZE_ROOT=
+
+while [ -z "${SIZE_SWAP}" ]; do
+    read -e -p "Size of swap volume (e.g. 8GB): " SIZE_SWAP
+done
+
+while [ -z "${SIZE_ROOT}" ]; do
+    read -e -p "Size of root volume (e.g. 64GB): " SIZE_ROOT
+done
+
+lvcreate -L ${SIZE_SWAP} vg0 -n swap
+lvcreate -L ${SIZE_ROOT} vg0 -n root
 lvcreate -l +100%FREE vg0 -n home
 lvdisplay
+
+confirm "Ready to format volumes. Press 'y' to continue..."
 
 mkswap /dev/mapper/vg0-swap
 mkfs.ext4 /dev/mapper/vg0-root
