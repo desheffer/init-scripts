@@ -10,6 +10,7 @@
       - neovim
       - ripgrep
       - starship
+      - stow
       - the_silver_searcher
       - tmate
       - tmux
