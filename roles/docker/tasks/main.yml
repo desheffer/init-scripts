@@ -14,6 +14,12 @@
     append: yes
     groups: docker
 
+- name: Create Docker configuration directory
+  become: yes
+  file:
+    path: /etc/docker
+    state: directory
+
 - name: Copy Docker daemon configuration
   become: yes
   template:
