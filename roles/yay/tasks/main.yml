@@ -1,0 +1,5 @@
+---
+
+- name: Install yay
+  aur:
+    name: yay
