@@ -37,5 +37,4 @@
 - name: Install extra CLI packages
   aur:
     name:
-      - go-yq-bin
       - google-cloud-sdk
