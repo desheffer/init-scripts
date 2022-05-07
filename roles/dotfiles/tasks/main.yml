@@ -4,10 +4,12 @@
   become: yes
   pacman:
     name:
+      - dotnet-runtime
       - fzf
       - jre-openjdk
       - kitty
       - neovim
+      - npm
       - ripgrep
       - starship
       - stow
