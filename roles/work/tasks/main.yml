@@ -72,18 +72,3 @@
     dest: /usr/local/bin/heimdallr
     mode: 0755
     force: no
-
-- name: Clone AWS rotate IAM keys repository
-  git:
-    repo: "https://github.com/rhyeal/aws-rotate-iam-keys"
-    dest: ~/rs/aws-rotate-iam-keys
-    accept_hostkey: yes
-    update: no
-
-- name: Create AWS rotate IAM keys cron
-  cron:
-    name: aws-rotate-iam-keys
-    hour: "0"
-    minute: "0"
-    weekday: "0"
-    job: "~/rs/aws-rotate-iam-keys/src/bin/aws-rotate-iam-keys --profile rsc-main"
