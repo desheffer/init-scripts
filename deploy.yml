@@ -5,6 +5,7 @@
     - { role: pacman, tags: ['pacman'] }
     - { role: yay, tags: ['yay'] }
 
+    - { role: chrome, tags: ['chrome'] }
     - { role: cli, tags: ['cli'] }
     - { role: cron, tags: ['cron'] }
     - { role: dconf, tags: ['dconf'] }

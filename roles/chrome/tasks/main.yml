@@ -1,0 +1,15 @@
+---
+
+- name: Install Chrome
+  aur:
+    name: google-chrome
+
+- name: Create config directory
+  file:
+    path: ~/.config
+    state: directory
+
+- name: Copy Chrome command line arguments
+  template:
+    src: chrome-flags.conf
+    dest: ~/.config/chrome-flags.conf
