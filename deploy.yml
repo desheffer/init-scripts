@@ -11,7 +11,6 @@
     - { role: dconf, tags: ['dconf'] }
     - { role: docker, tags: ['docker'] }
     - { role: dotfiles, tags: ['dotfiles'] }
-    - { role: firefox, tags: ['firefox'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }
