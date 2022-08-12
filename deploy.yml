@@ -10,7 +10,6 @@
     - { role: cron, tags: ['cron'] }
     - { role: dconf, tags: ['dconf'] }
     - { role: docker, tags: ['docker'] }
-    - { role: dotfiles, tags: ['dotfiles'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: gnome, tags: ['gnome'] }
     - { role: gui, tags: ['gui'] }

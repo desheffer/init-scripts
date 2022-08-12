@@ -1,5 +1,0 @@
----
-
-- name: Install dotfiles
-  ignore_errors: yes
-  command: "~/dotfiles/install.sh -f"
